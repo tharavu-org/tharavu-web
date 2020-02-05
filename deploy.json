@@ -1,0 +1,22 @@
+{
+    "s3": {
+        "production": {
+            "buildDir": "dist",
+            "bucket": "tharavu.org",
+            "cacheFilePatterns": [
+                "**/static/**"
+            ],
+            "noCacheFilePatterns": [
+                "**/index.html",
+                "**/service-worker.js",
+                "**/serviceWorker.js"
+            ],
+            "compression": true,
+            "gzip": [
+                ".js",
+                ".css"
+            ],
+            "envFile": ".env.production"
+        }
+    }
+}
