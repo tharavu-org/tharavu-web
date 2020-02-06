@@ -1,16 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import AppRoute from './AppRoute';
 import Home from '../pages/Home';
+import PageNotFound from '../pages/PageNotFound';
 
 export default function Routes() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <AppRoute exact path="/" component={Home} />
-        </Route>
+        <AppRoute exact path="/" component={Home} />
+        <AppRoute component={PageNotFound} />
       </Switch>
     </Router>
   );
