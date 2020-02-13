@@ -901,6 +901,11 @@
   resolved "https://registry.yarnpkg.com/@open-tech-world/parse-env-file/-/parse-env-file-1.0.2.tgz#5cc6ad7787a6d8030cc6e3d78c39b46bf7646661"
   integrity sha512-G3mWM4GQz59gdG1JqLupknhw4vixMT1oJ5seiIwZxbgDMR+xdNKtbbdkwkwT2b9kyiJL0jtse09rxTHIHK5F1A==
 
+"@open-tech-world/react-form@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@open-tech-world/react-form/-/react-form-0.2.0.tgz#2587b2b54b3f9240b2e885ca39820dc196600b37"
+  integrity sha512-K1WMKleZRKXo+kAL3c9eFCD2wM/4nasZD6yLZWCMxHW0huRumKLPEh98PdPnZHpE7SU/Dzf0RJxaRjqWCm49gA==
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
