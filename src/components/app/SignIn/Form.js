@@ -3,10 +3,11 @@ import { Form as ReactForm, Field } from '@open-tech-world/react-form';
 import { Button, Box } from '@material-ui/core';
 
 import MUITextField from '../../lib/form/MUITextField';
+import MUIRadioField from '../../lib/form/MUIRadioField';
 
-export default function Form() {
+export default function Form({ onSubmit }) {
   return (
-    <ReactForm>
+    <ReactForm onSubmit={onSubmit} initialValues={{ userType: 'member' }}>
       <Box display="flex" flexDirection="column">
         <Box display="flex" m={2}>
           <Field
@@ -23,6 +24,17 @@ export default function Form() {
             label="Password"
             type="password"
             required
+          />
+        </Box>
+        <Box display="flex" m={2}>
+          <Field
+            component={MUIRadioField}
+            name="userType"
+            label="User Type"
+            options={[
+              { label: 'User', value: 'user' },
+              { label: 'Member', value: 'member' },
+            ]}
           />
         </Box>
         <Box display="flex" flexDirection="row-reverse" m={2}>
