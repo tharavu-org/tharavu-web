@@ -30,7 +30,7 @@ export default function AccountMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={signout}>Logout</MenuItem>
+        <MenuItem onClick={signout}>Log out</MenuItem>
       </Menu>
     </div>
   );
