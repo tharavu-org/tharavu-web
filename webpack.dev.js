@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -8,4 +9,10 @@ module.exports = merge(common, {
     contentBase: './dist',
     historyApiFallback: true,
   },
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      REACT_APP_API_URL: 'http://localhost:5000',
+    }),
+  ],
 });
