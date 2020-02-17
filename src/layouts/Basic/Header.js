@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 
 import AppDialog from '../../components/lib/AppDialog';
 import SignIn from '../../components/app/SignIn';
-import signout from '../../utils/session';
+import AccountMenu from '../../components/lib/AccountMenu';
 
 const useStyles = makeStyles({
   appBar: {
@@ -23,11 +23,7 @@ export default function Header() {
 
   const renderSigninBtn = () => {
     if (currentUser) {
-      return (
-        <Button variant="text" size="small" color="secondary" onClick={signout}>
-          Sign out
-        </Button>
-      );
+      return <AccountMenu />;
     }
 
     return (
