@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Sidebar from './Sidebar';
+import Dashboard from './Dashboard';
+import PageNotFound from '../PageNotFound';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -21,14 +23,22 @@ export default function Member() {
   const classes = useStyles();
   const [menu, setMenu] = useState('dashboard');
 
+  const renderContent = () => {
+    switch (menu) {
+      case 'dashboard':
+        return <Dashboard />;
+
+      default:
+        return <PageNotFound />;
+    }
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.sidebar}>
         <Sidebar menu={menu} onMenuChange={setMenu} />
       </div>
-      <div className={classes.content}>
-        <div>Content</div>
-      </div>
+      <div className={classes.content}>{renderContent()}</div>
     </div>
   );
 }
