@@ -11,9 +11,6 @@ const useStyles = makeStyles(theme => ({
     gridTemplateColumns: '200px auto',
     height: '100%',
   },
-  sidebar: {
-    overflowY: 'scroll',
-  },
   content: {
     padding: theme.spacing(2),
   },
