@@ -6,7 +6,7 @@ export default function Sidebar({ menu, onMenuChange }) {
 
   const renderMenuOptions = () => {
     return menuOptions.map(i => (
-      <MenuItem selected={menu === i} onClick={() => onMenuChange(i)}>
+      <MenuItem key={i} selected={menu === i} onClick={() => onMenuChange(i)}>
         {i.toUpperCase()}
       </MenuItem>
     ));
