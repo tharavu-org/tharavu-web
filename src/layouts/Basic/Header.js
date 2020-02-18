@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
 
 import AppDialog from '../../components/lib/AppDialog';
 import SignIn from '../../components/app/SignIn';
@@ -11,8 +11,11 @@ const useStyles = makeStyles({
   appBar: {
     height: '50px',
   },
+  toolBar: {
+    justifyContent: 'space-between',
+  },
   title: {
-    flexGrow: 1,
+    fontWeight: 'bold',
   },
 });
 
@@ -40,10 +43,12 @@ export default function Header() {
 
   return (
     <AppBar position="fixed" color="default" className={classes.appBar}>
-      <Toolbar variant="dense">
-        <Typography variant="h6" className={classes.title}>
-          தரவு
-        </Typography>
+      <Toolbar variant="dense" className={classes.toolBar}>
+        <Button href="/">
+          <Typography className={classes.title} variant="h6">
+            தரவு
+          </Typography>
+        </Button>
         {renderSigninBtn()}
         {!currentUser && (
           <AppDialog
