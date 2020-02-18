@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuList, MenuItem } from '@material-ui/core';
+import { MenuList, MenuItem, Paper } from '@material-ui/core';
 
 export default function Sidebar({ menu, onMenuChange }) {
   const menuOptions = ['dashboard', 'events', 'tags', 'members'];
@@ -16,5 +16,11 @@ export default function Sidebar({ menu, onMenuChange }) {
       </MenuItem>
     ));
   };
-  return <MenuList>{renderMenuOptions()}</MenuList>;
+  return (
+    <MenuList>
+      <Paper square variant="outlined">
+        {renderMenuOptions()}
+      </Paper>
+    </MenuList>
+  );
 }
