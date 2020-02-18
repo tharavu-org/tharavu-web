@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+
+import Sidebar from './Sidebar';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -9,7 +11,6 @@ const useStyles = makeStyles(theme => ({
   },
   sidebar: {
     overflowY: 'scroll',
-    padding: theme.spacing(2),
   },
   content: {
     padding: theme.spacing(2),
@@ -18,10 +19,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function Member() {
   const classes = useStyles();
+  const [menu, setMenu] = useState('dashboard');
+
   return (
     <div className={classes.container}>
       <div className={classes.sidebar}>
-        <div>Sidebar</div>
+        <Sidebar menu={menu} onMenuChange={setMenu} />
       </div>
       <div className={classes.content}>
         <div>Content</div>
