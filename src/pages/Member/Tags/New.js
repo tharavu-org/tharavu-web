@@ -10,6 +10,7 @@ export default function New() {
   const onSubmit = values => {
     dispatch({ type: 'CREATE_TAG', payload: values });
   };
+
   return (
     <AppForm>
       <Form onSubmit={onSubmit} />
