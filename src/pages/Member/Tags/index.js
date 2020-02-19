@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 
 import AppDialog from '../../../components/lib/AppDialog';
 import New from './New';
+import List from './List';
 
 export default function Tags() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function Tags() {
       >
         Create
       </Button>
+      <List />
       <AppDialog
         open={dialogOpen}
         title="Create Tag"
