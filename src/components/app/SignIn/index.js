@@ -1,11 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Container, Box } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
 import Form from './Form';
+import AppForm from '../../lib/form/AppForm';
 
 export default function SignIn() {
-  const errMsg = useSelector(state => state.session.signinFailedMsg);
   const dispatch = useDispatch();
 
   const onSubmit = values => {
@@ -13,13 +12,8 @@ export default function SignIn() {
   };
 
   return (
-    <Container maxWidth="xs">
+    <AppForm>
       <Form onSubmit={onSubmit} />
-      {errMsg && (
-        <Box color="white" bgcolor="error.main" p={2}>
-          {errMsg}
-        </Box>
-      )}
-    </Container>
+    </AppForm>
   );
 }

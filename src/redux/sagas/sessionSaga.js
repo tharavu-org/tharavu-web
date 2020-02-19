@@ -14,7 +14,7 @@ function* signin(params) {
     yield put({ type: 'SET_CURRENT_USER', payload: result.data });
   } catch (error) {
     yield put({
-      type: 'SIGNIN_FAILED',
+      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
       payload: 'Invalid email address or password.',
     });
   }
