@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
+import AppForm from '../../../components/lib/form/AppForm';
 import Form from './Form';
 
 export default function New() {
@@ -9,5 +10,9 @@ export default function New() {
   const onSubmit = values => {
     dispatch({ type: 'CREATE_TAG', payload: values });
   };
-  return <Form onSubmit={onSubmit} />;
+  return (
+    <AppForm>
+      <Form onSubmit={onSubmit} />
+    </AppForm>
+  );
 }
