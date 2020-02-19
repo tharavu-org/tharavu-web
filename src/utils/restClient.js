@@ -28,7 +28,7 @@ export async function postAPI(url = '', data = {}) {
     },
     body: JSON.stringify(data),
   });
-  if (response.status === 401) {
+  if (currentUser && response.status === 401) {
     signout();
   }
   if (!response.ok) {
