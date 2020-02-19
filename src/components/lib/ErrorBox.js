@@ -9,6 +9,7 @@ export default function ErrorBox({ error }) {
     if (typeof error === 'object' && Array.isArray(error)) {
       return error[0];
     }
+    return null;
   };
 
   if (error) {
