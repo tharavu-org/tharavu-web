@@ -14,7 +14,7 @@ function* create(params) {
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: error.data.errors,
+      payload: error.data.errors.errors,
     });
   }
 }
