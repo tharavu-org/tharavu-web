@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
 
 import AppDialog from '../../components/lib/AppDialog';
 import SignIn from '../../components/app/SignIn';
-import AccountMenu from '../../components/lib/AccountMenu';
+import AccountMenu from '../../components/app/AccountMenu';
 
 const useStyles = makeStyles({
   appBar: {
