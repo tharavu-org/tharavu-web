@@ -42,11 +42,23 @@ export async function postAPI(url = '', data = {}) {
 }
 
 export async function getAPI(url = '') {
-  const response = await fetch(url, {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const authToken = path(['authToken'], currentUser);
+  const response = await fetch(process.env.REACT_APP_API_URL + url, {
     method: 'GET',
+    headers: {
+      Authorization: authToken,
+    },
   });
+  if (currentUser && response.status === 401) {
+    signout();
+  }
   if (!response.ok) {
-    throw new Error(response.statusText);
+    throw new APIError({
+      status: response.status,
+      statusText: response.statusText,
+      errors: await response.json(),
+    });
   }
   return response.json();
 }
