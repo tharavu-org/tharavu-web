@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import PageNotFound from '../PageNotFound';
+import Tags from './Tags';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -24,6 +25,8 @@ export default function Member() {
     switch (menu) {
       case 'dashboard':
         return <Dashboard />;
+      case 'tags':
+        return <Tags />;
 
       default:
         return <PageNotFound />;

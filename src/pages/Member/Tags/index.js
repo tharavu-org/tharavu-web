@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 
 import AppDialog from '../../../components/lib/AppDialog';
+import New from './New';
 
 export default function Tags() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function Tags() {
         title="Create Tag"
         onClose={() => setDialogOpen(false)}
       >
-        <div />
+        <New />
       </AppDialog>
     </div>
   );
