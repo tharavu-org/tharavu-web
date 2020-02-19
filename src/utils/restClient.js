@@ -1,3 +1,4 @@
+import { path } from 'ramda';
 import signout from './session';
 
 class APIError extends Error {
@@ -17,7 +18,8 @@ class APIError extends Error {
 }
 
 export async function postAPI(url = '', data = {}) {
-  const { authToken } = JSON.parse(localStorage.getItem('currentUser'));
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const authToken = path(['authToken'], currentUser);
   const response = await fetch(process.env.REACT_APP_API_URL + url, {
     method: 'POST',
     headers: {
