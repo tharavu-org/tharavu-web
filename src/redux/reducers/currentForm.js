@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions';
 
 const defaultState = {
   success: false,
-  backendErrors: [],
+  backendErrors: null,
 };
 
 export default handleActions(
@@ -18,7 +18,7 @@ export default handleActions(
     DESTROY_CURRENT_FORM: state => ({
       ...state,
       success: false,
-      backendErrors: [],
+      backendErrors: null,
     }),
   },
   defaultState,
