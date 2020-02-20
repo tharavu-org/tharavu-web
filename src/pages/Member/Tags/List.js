@@ -9,10 +9,14 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   container: {
     marginTop: theme.spacing(3),
+  },
+  actionBtn: {
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -39,6 +43,18 @@ export default function List() {
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 <Chip label={row.name} />
+              </TableCell>
+              <TableCell component="th" scope="row">
+                <Button
+                  className={classes.actionBtn}
+                  variant="outlined"
+                  size="small"
+                >
+                  Edit
+                </Button>
+                <Button variant="outlined" size="small" color="secondary">
+                  Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}
