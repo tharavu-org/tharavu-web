@@ -17,11 +17,11 @@ class APIError extends Error {
   }
 }
 
-export async function postAPI(url = '', data = {}) {
+export async function postAPI(url = '', data = {}, patch = false) {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   const authToken = path(['authToken'], currentUser);
   const response = await fetch(process.env.REACT_APP_API_URL + url, {
-    method: 'POST',
+    method: patch ? 'PATCH' : 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: authToken,
