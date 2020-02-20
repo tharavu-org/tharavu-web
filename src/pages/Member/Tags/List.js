@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,9 @@ import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
+
+import AppDialog from '../../../components/lib/AppDialog';
+import Edit from './Edit';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -24,42 +27,66 @@ export default function List() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const rows = useSelector(state => state.tag.tags);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [tag, setTag] = useState(null);
+  const currentFormSuccess = useSelector(state => state.currentForm.success);
+
+  useEffect(() => {
+    if (currentFormSuccess) {
+      setDialogOpen(false);
+    }
+  }, [currentFormSuccess]);
 
   useEffect(() => {
     dispatch({ type: 'GET_TAGS' });
   }, [dispatch]);
 
+  const handleEdit = obj => {
+    setTag(obj);
+    setDialogOpen(true);
+  };
+
   return (
-    <TableContainer component={Paper} className={classes.container}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                <Chip label={row.name} />
-              </TableCell>
-              <TableCell component="th" scope="row">
-                <Button
-                  className={classes.actionBtn}
-                  variant="outlined"
-                  size="small"
-                >
-                  Edit
-                </Button>
-                <Button variant="outlined" size="small" color="secondary">
-                  Delete
-                </Button>
-              </TableCell>
+    <>
+      <TableContainer component={Paper} className={classes.container}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {rows.map(row => (
+              <TableRow key={row.id}>
+                <TableCell component="th" scope="row">
+                  <Chip label={row.name} />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <Button
+                    className={classes.actionBtn}
+                    variant="outlined"
+                    size="small"
+                    onClick={() => handleEdit(row)}
+                  >
+                    Edit
+                  </Button>
+                  <Button variant="outlined" size="small" color="secondary">
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <AppDialog
+        open={dialogOpen}
+        title="Edit Tag"
+        onClose={() => setDialogOpen(false)}
+      >
+        <Edit tag={tag} />
+      </AppDialog>
+    </>
   );
 }
