@@ -41,11 +41,11 @@ export async function postAPI(url = '', data = {}, patch = false) {
   return response.json();
 }
 
-export async function getAPI(url = '') {
+export async function getAPI(url = '', del = false) {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   const authToken = path(['authToken'], currentUser);
   const response = await fetch(process.env.REACT_APP_API_URL + url, {
-    method: 'GET',
+    method: del ? 'DELETE' : 'GET',
     headers: {
       Authorization: authToken,
     },
