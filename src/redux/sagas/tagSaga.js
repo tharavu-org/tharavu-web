@@ -38,6 +38,18 @@ function* update(params) {
   }
 }
 
+function* deleteTag(params) {
+  try {
+    yield call(getAPI, `/tharavu/tharavu-tags/${params.payload}`, true);
+    yield put({ type: 'GET_TAGS' });
+  } catch (error) {
+    yield put({
+      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
+      payload: error.data.errors.errors,
+    });
+  }
+}
+
 function* getTags() {
   try {
     const result = yield call(getAPI, '/tharavu/tharavu-tags');
@@ -54,4 +66,5 @@ export default function* sessionSaga() {
   yield takeLatest('CREATE_TAG', create);
   yield takeLatest('GET_TAGS', getTags);
   yield takeLatest('UPDATE_TAG', update);
+  yield takeLatest('DELETE_TAG', deleteTag);
 }

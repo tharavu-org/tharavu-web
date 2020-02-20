@@ -46,6 +46,13 @@ export default function List() {
     setDialogOpen(true);
   };
 
+  const handleDelete = id => {
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Delete?')) {
+      dispatch({ type: 'DELETE_TAG', payload: id });
+    }
+  };
+
   return (
     <>
       <TableContainer component={Paper} className={classes.container}>
@@ -71,7 +78,12 @@ export default function List() {
                   >
                     Edit
                   </Button>
-                  <Button variant="outlined" size="small" color="secondary">
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="secondary"
+                    onClick={() => handleDelete(row.id)}
+                  >
                     Delete
                   </Button>
                 </TableCell>
