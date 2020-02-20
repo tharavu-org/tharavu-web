@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Chip from '@material-ui/core/Chip';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -37,7 +38,7 @@ export default function List() {
           {rows.map(row => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
-                {row.name}
+                <Chip label={row.name} />
               </TableCell>
             </TableRow>
           ))}
