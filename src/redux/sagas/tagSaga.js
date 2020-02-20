@@ -11,6 +11,7 @@ function* create(params) {
       camelToSnakeCase(params.payload),
     );
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+    yield put({ type: 'GET_TAGS' });
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
