@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 export default function ErrorBox({ error }) {
   const renderErrors = () => {
@@ -14,9 +14,10 @@ export default function ErrorBox({ error }) {
 
   if (error) {
     return (
-      <Box color="white" bgcolor="error.main" p={2}>
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
         {renderErrors()}
-      </Box>
+      </Alert>
     );
   }
 

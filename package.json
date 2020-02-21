@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.43",
     "@mdi/js": "^4.9.95",
     "@mdi/react": "^1.2.1",
     "@open-tech-world/react-form": "^0.2.0",
