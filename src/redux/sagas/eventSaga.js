@@ -7,11 +7,11 @@ function* create(params) {
   try {
     yield call(
       postAPI,
-      '/tharavu/tharavu-tags',
+      '/tharavu/tharavu-events',
       camelToSnakeCase(params.payload),
     );
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield put({ type: 'GET_TAGS' });
+    yield put({ type: 'GET_EVENTS' });
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
@@ -24,12 +24,12 @@ function* update(params) {
   try {
     yield call(
       postAPI,
-      `/tharavu/tharavu-tags/${params.payload.id}`,
+      `/tharavu/tharavu-events/${params.payload.id}`,
       camelToSnakeCase(params.payload),
       true,
     );
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield put({ type: 'GET_TAGS' });
+    yield put({ type: 'GET_EVENTS' });
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
@@ -38,10 +38,10 @@ function* update(params) {
   }
 }
 
-function* deleteTag(params) {
+function* deleteEvent(params) {
   try {
-    yield call(getAPI, `/tharavu/tharavu-tags/${params.payload}`, true);
-    yield put({ type: 'GET_TAGS' });
+    yield call(getAPI, `/tharavu/tharavu-events/${params.payload}`, true);
+    yield put({ type: 'GET_EVENTS' });
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
@@ -50,10 +50,10 @@ function* deleteTag(params) {
   }
 }
 
-function* getTags() {
+function* getEvents() {
   try {
-    const result = yield call(getAPI, '/tharavu/tharavu-tags');
-    yield put({ type: 'SET_TAGS', payload: result.data.tharavuTags });
+    const result = yield call(getAPI, '/tharavu/tharavu-events');
+    yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
   } catch (error) {
     yield put({
       type: 'SET_TOAST_ERRORS',
@@ -62,9 +62,9 @@ function* getTags() {
   }
 }
 
-export default function* tagSaga() {
-  yield takeLatest('CREATE_TAG', create);
-  yield takeLatest('GET_TAGS', getTags);
-  yield takeLatest('UPDATE_TAG', update);
-  yield takeLatest('DELETE_TAG', deleteTag);
+export default function* eventSaga() {
+  yield takeLatest('CREATE_EVENT', create);
+  yield takeLatest('GET_EVENTS', getEvents);
+  yield takeLatest('UPDATE_EVENT', update);
+  yield takeLatest('DELETE_EVENT', deleteEvent);
 }

@@ -5,6 +5,7 @@ import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import PageNotFound from '../PageNotFound';
 import Tags from './Tags';
+import Events from './Events';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Member() {
   const classes = useStyles();
-  const [menu, setMenu] = useState('dashboard');
+  const [menu, setMenu] = useState('events');
 
   const renderContent = () => {
     switch (menu) {
@@ -27,6 +28,8 @@ export default function Member() {
         return <Dashboard />;
       case 'tags':
         return <Tags />;
+      case 'events':
+        return <Events />;
 
       default:
         return <PageNotFound />;
