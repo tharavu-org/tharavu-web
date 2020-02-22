@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     height: `calc(100% - ${theme.spacing(4)}px)`,
     padding: theme.spacing(2),
+    overflowY: 'auto',
   },
 }));
 

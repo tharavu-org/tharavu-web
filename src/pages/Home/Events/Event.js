@@ -16,7 +16,12 @@ export default function Event({ event }) {
 
   const renderTags = () => {
     return event.tags.map((t, i) => (
-      <Chip key={i.toString()} label={t.name} className={classes.chip} />
+      <Chip
+        key={i.toString()}
+        label={t.name}
+        className={classes.chip}
+        variant="outlined"
+      />
     ));
   };
 
