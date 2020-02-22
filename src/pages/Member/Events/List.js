@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
 
 import AppDialog from '../../../components/lib/AppDialog';
+import Edit from './Edit';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -28,7 +29,7 @@ export default function List() {
   const rows = useSelector(state => state.event.events);
   const currentFormSuccess = useSelector(state => state.currentForm.success);
   const [dialogOpen, setDialogOpen] = useState(false);
-  // const [event, setTag] = useState(null);
+  const [event, setEvent] = useState(null);
 
   useEffect(() => {
     if (currentFormSuccess) {
@@ -40,10 +41,10 @@ export default function List() {
     dispatch({ type: 'GET_EVENTS' });
   }, [dispatch]);
 
-  // const handleEdit = obj => {
-  //   // setTag(obj);
-  //   setDialogOpen(true);
-  // };
+  const handleEdit = obj => {
+    setEvent(obj);
+    setDialogOpen(true);
+  };
 
   const handleDelete = id => {
     // eslint-disable-next-line no-alert
@@ -83,7 +84,7 @@ export default function List() {
                     className={classes.actionBtn}
                     variant="outlined"
                     size="small"
-                    // onClick={() => handleEdit(row)}
+                    onClick={() => handleEdit(row)}
                   >
                     Edit
                   </Button>
@@ -106,7 +107,7 @@ export default function List() {
         title="Edit Tag"
         onClose={() => setDialogOpen(false)}
       >
-        <div />
+        <Edit event={event} />
       </AppDialog>
     </>
   );
