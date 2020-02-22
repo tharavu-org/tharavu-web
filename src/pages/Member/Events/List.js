@@ -49,7 +49,7 @@ export default function List() {
   const handleDelete = id => {
     // eslint-disable-next-line no-alert
     if (window.confirm('Delete?')) {
-      dispatch({ type: 'DELETE_TAG', payload: id });
+      dispatch({ type: 'DELETE_EVENT', payload: id });
     }
   };
 
