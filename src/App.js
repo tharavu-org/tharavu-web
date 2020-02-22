@@ -1,15 +1,23 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import configureStore from './redux/configureStore';
 import Routes from './routes';
 
 const store = configureStore();
+const theme = createMuiTheme();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <Routes />
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <ThemeProvider theme={theme}>
+          <Routes />
+        </ThemeProvider>
+      </MuiPickersUtilsProvider>
     </Provider>
   );
 }
