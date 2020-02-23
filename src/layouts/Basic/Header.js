@@ -29,20 +29,25 @@ export default function Header() {
   const currentUser = useSelector(state => state.session.currentUser);
   const classes = useStyles();
 
-  const renderSigninBtn = () => {
+  const renderActions = () => {
     if (currentUser) {
       return <AccountMenu />;
     }
 
     return (
-      <Button
-        variant="outlined"
-        size="small"
-        color="primary"
-        onClick={() => setDialogOpen(true)}
-      >
-        Sign in
-      </Button>
+      <>
+        <Link className={classes.link} to="/contact-us">
+          Contact Us
+        </Link>
+        <Button
+          variant="outlined"
+          size="small"
+          color="primary"
+          onClick={() => setDialogOpen(true)}
+        >
+          Sign in
+        </Button>
+      </>
     );
   };
 
@@ -54,22 +59,17 @@ export default function Header() {
             தரவு
           </Typography>
         </Button>
-        <div>
-          <Link className={classes.link} to="/contact-us">
-            Contact Us
-          </Link>
-          {renderSigninBtn()}
-          {!currentUser && (
-            <AppDialog
-              open={dialogOpen}
-              title="Sign in"
-              onClose={() => setDialogOpen(false)}
-            >
-              <SignIn />
-            </AppDialog>
-          )}
-        </div>
+        <div>{renderActions()}</div>
       </Toolbar>
+      {!currentUser && (
+        <AppDialog
+          open={dialogOpen}
+          title="Sign in"
+          onClose={() => setDialogOpen(false)}
+        >
+          <SignIn />
+        </AppDialog>
+      )}
     </AppBar>
   );
 }

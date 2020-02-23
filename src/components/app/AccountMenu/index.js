@@ -30,7 +30,7 @@ export default function AccountMenu() {
   };
 
   return (
-    <div>
+    <>
       <Button
         aria-controls="account-menu"
         aria-haspopup="true"
@@ -49,6 +49,6 @@ export default function AccountMenu() {
         <MenuItem onClick={handleAccountClick}>Account</MenuItem>
         <MenuItem onClick={signout}>Sign out</MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
