@@ -21,13 +21,10 @@ export default function Event({ event }) {
         label={t.name}
         className={classes.chip}
         variant="outlined"
+        color="primary"
       />
     ));
   };
 
-  return (
-    <Paper elevation={2} className={classes.paper}>
-      {renderTags()}
-    </Paper>
-  );
+  return <Paper className={classes.paper}>{renderTags()}</Paper>;
 }
