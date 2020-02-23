@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import AppDialog from '../../components/lib/AppDialog';
 import SignIn from '../../components/app/SignIn';
 import AccountMenu from '../../components/app/AccountMenu';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   appBar: {
     height: '50px',
     backgroundColor: 'inherit',
@@ -18,7 +19,10 @@ const useStyles = makeStyles({
   title: {
     fontWeight: 'bold',
   },
-});
+  link: {
+    marginRight: theme.spacing(2),
+  },
+}));
 
 export default function Header() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -50,16 +54,21 @@ export default function Header() {
             தரவு
           </Typography>
         </Button>
-        {renderSigninBtn()}
-        {!currentUser && (
-          <AppDialog
-            open={dialogOpen}
-            title="Sign in"
-            onClose={() => setDialogOpen(false)}
-          >
-            <SignIn />
-          </AppDialog>
-        )}
+        <div>
+          <Link className={classes.link} to="/contact-us">
+            Contact Us
+          </Link>
+          {renderSigninBtn()}
+          {!currentUser && (
+            <AppDialog
+              open={dialogOpen}
+              title="Sign in"
+              onClose={() => setDialogOpen(false)}
+            >
+              <SignIn />
+            </AppDialog>
+          )}
+        </div>
       </Toolbar>
     </AppBar>
   );
