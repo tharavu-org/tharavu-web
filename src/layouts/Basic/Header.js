@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 import AppDialog from '../../components/lib/AppDialog';
 import SignIn from '../../components/app/SignIn';
 import AccountMenu from '../../components/app/AccountMenu';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   appBar: {
     height: '50px',
     backgroundColor: 'inherit',
@@ -18,9 +17,6 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     fontWeight: 'bold',
-  },
-  link: {
-    marginRight: theme.spacing(2),
   },
 }));
 
@@ -36,9 +32,6 @@ export default function Header() {
 
     return (
       <>
-        <Link className={classes.link} to="/contact-us">
-          Contact Us
-        </Link>
         <Button
           variant="outlined"
           size="small"
