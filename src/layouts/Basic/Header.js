@@ -10,7 +10,7 @@ import AccountMenu from '../../components/app/AccountMenu';
 const useStyles = makeStyles(() => ({
   appBar: {
     height: '50px',
-    backgroundColor: 'inherit',
+    backgroundColor: 'white',
   },
   toolBar: {
     justifyContent: 'space-between',

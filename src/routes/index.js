@@ -6,6 +6,8 @@ import Home from '../pages/Home';
 import PageNotFound from '../pages/PageNotFound';
 import Member from '../pages/Member';
 import ContactUs from '../pages/ContactUs';
+import PrivacyPolicy from '../pages/legal/PrivacyPolicy';
+import LegalRoute from './LegalRoute';
 
 export default function Routes() {
   return (
@@ -13,6 +15,11 @@ export default function Routes() {
       <Switch>
         <AppRoute exact path="/" component={Home} />
         <AppRoute exact path="/contact-us" component={ContactUs} />
+        <LegalRoute
+          exact
+          path="/legal/privacy-policy"
+          component={PrivacyPolicy}
+        />
         <AppRoute exact path="/accounts/member" component={Member} />
         <AppRoute component={PageNotFound} />
       </Switch>
