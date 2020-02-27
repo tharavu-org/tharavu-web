@@ -23,6 +23,9 @@ export default function Footer() {
       <Link className={classes.link} to="/legal/privacy-policy">
         Privacy Policy
       </Link>
+      <Link className={classes.link} to="/legal/terms-of-service">
+        Terms of Service
+      </Link>
       <Link className={classes.link} to="/contact-us">
         Contact Us
       </Link>
