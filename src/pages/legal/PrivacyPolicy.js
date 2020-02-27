@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
   return (
     <Paper className={classes.paper}>
       <Typography className={classes.heading} variant="h2">
-        Privacy Policy
+        PRIVACY POLICY
       </Typography>
       <Typography className={classes.desc} variant="body1">
         It is our responsiblity to protect your information and privacy.
