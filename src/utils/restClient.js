@@ -1,5 +1,7 @@
 import { path } from 'ramda';
+
 import signout from './session';
+import camelToSnakeCase from './caseHelpers';
 
 class APIError extends Error {
   constructor(data, ...params) {
@@ -26,7 +28,7 @@ export async function postAPI(url = '', data = {}, patch = false) {
       'Content-Type': 'application/json',
       Authorization: authToken,
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(camelToSnakeCase(data)),
   });
   if (currentUser && response.status === 401) {
     signout();
