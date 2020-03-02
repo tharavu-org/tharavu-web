@@ -1,15 +1,10 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 
-import camelToSnakeCase from '../../utils/caseHelpers';
 import { postAPI, getAPI } from '../../utils/restClient';
 
 function* create(params) {
   try {
-    yield call(
-      postAPI,
-      '/tharavu/tharavu-tags',
-      camelToSnakeCase(params.payload),
-    );
+    yield call(postAPI, '/tharavu/tags', params.payload);
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
     yield put({ type: 'GET_TAGS' });
   } catch (error) {
@@ -24,8 +19,8 @@ function* update(params) {
   try {
     yield call(
       postAPI,
-      `/tharavu/tharavu-tags/${params.payload.id}`,
-      camelToSnakeCase(params.payload),
+      `/tharavu/tags/${params.payload.id}`,
+      params.payload,
       true,
     );
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
@@ -40,7 +35,7 @@ function* update(params) {
 
 function* deleteTag(params) {
   try {
-    yield call(getAPI, `/tharavu/tharavu-tags/${params.payload}`, true);
+    yield call(getAPI, `/tharavu/tags/${params.payload}`, true);
     yield put({ type: 'GET_TAGS' });
   } catch (error) {
     yield put({
@@ -52,7 +47,7 @@ function* deleteTag(params) {
 
 function* getTags() {
   try {
-    const result = yield call(getAPI, '/tharavu/tharavu-tags');
+    const result = yield call(getAPI, '/tharavu/tags');
     yield put({ type: 'SET_TAGS', payload: result.data.tharavuTags });
   } catch (error) {
     yield put({

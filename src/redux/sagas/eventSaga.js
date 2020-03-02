@@ -1,15 +1,10 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 
-import camelToSnakeCase from '../../utils/caseHelpers';
 import { postAPI, getAPI } from '../../utils/restClient';
 
 function* create(params) {
   try {
-    yield call(
-      postAPI,
-      '/tharavu/tharavu-events',
-      camelToSnakeCase(params.payload),
-    );
+    yield call(postAPI, '/tharavu/events', params.payload);
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
     yield put({ type: 'GET_EVENTS' });
   } catch (error) {
@@ -24,8 +19,8 @@ function* update(params) {
   try {
     yield call(
       postAPI,
-      `/tharavu/tharavu-events/${params.payload.id}`,
-      camelToSnakeCase(params.payload),
+      `/tharavu/events/${params.payload.id}`,
+      params.payload,
       true,
     );
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
@@ -40,7 +35,7 @@ function* update(params) {
 
 function* deleteEvent(params) {
   try {
-    yield call(getAPI, `/tharavu/tharavu-events/${params.payload}`, true);
+    yield call(getAPI, `/tharavu/events/${params.payload}`, true);
     yield put({ type: 'GET_EVENTS' });
   } catch (error) {
     yield put({
@@ -52,7 +47,7 @@ function* deleteEvent(params) {
 
 function* getEvents() {
   try {
-    const result = yield call(getAPI, '/tharavu/tharavu-events');
+    const result = yield call(getAPI, '/tharavu/events');
     yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
   } catch (error) {
     yield put({
