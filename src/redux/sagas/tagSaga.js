@@ -1,12 +1,17 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 import { postAPI, getAPI } from '../../utils/restClient';
+
+function* getTagsWithPagination() {
+  const pagination = yield select(state => state.pagination.pagination);
+  yield put({ type: 'GET_TAGS', payload: { page: pagination.currentPage } });
+}
 
 function* create(params) {
   try {
     yield call(postAPI, '/tharavu/tags', params.payload);
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield put({ type: 'GET_TAGS' });
+    yield call(getTagsWithPagination);
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
@@ -24,7 +29,7 @@ function* update(params) {
       true,
     );
     yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield put({ type: 'GET_TAGS' });
+    yield call(getTagsWithPagination);
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
@@ -36,7 +41,7 @@ function* update(params) {
 function* deleteTag(params) {
   try {
     yield call(getAPI, `/tharavu/tags/${params.payload}`, true);
-    yield put({ type: 'GET_TAGS' });
+    yield call(getTagsWithPagination);
   } catch (error) {
     yield put({
       type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
@@ -45,10 +50,11 @@ function* deleteTag(params) {
   }
 }
 
-function* getTags() {
+function* getTags({ payload }) {
   try {
-    const result = yield call(getAPI, '/tharavu/tags');
+    const result = yield call(getAPI, `/tharavu/tags?page=${payload.page}`);
     yield put({ type: 'SET_TAGS', payload: result.data.tharavuTags });
+    yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
   } catch (error) {
     yield put({
       type: 'SET_TOAST_ERRORS',

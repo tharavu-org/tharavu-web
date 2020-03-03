@@ -13,6 +13,7 @@ import { Button } from '@material-ui/core';
 
 import AppDialog from '../../../components/lib/AppDialog';
 import Edit from './Edit';
+import AppPagination from '../../../components/app/AppPagination';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -38,7 +39,7 @@ export default function List() {
   }, [currentFormSuccess]);
 
   useEffect(() => {
-    dispatch({ type: 'GET_TAGS' });
+    dispatch({ type: 'GET_TAGS', payload: { page: 1 } });
   }, [dispatch]);
 
   const handleEdit = obj => {
@@ -92,6 +93,7 @@ export default function List() {
           </TableBody>
         </Table>
       </TableContainer>
+      <AppPagination actionType="GET_TAGS" />
       <AppDialog
         open={dialogOpen}
         title="Edit Tag"
