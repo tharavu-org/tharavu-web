@@ -9,6 +9,7 @@ import ContactUs from '../pages/ContactUs';
 import PrivacyPolicy from '../pages/legal/PrivacyPolicy';
 import LegalRoute from './LegalRoute';
 import TermsOfService from '../pages/legal/TermsOfService';
+import MemberRoute from './MemberRoute';
 
 export default function Routes() {
   return (
@@ -26,7 +27,7 @@ export default function Routes() {
           path="/legal/terms-of-service"
           component={TermsOfService}
         />
-        <AppRoute exact path="/accounts/member" component={Member} />
+        <MemberRoute exact path="/accounts/member" component={Member} />
         <AppRoute component={PageNotFound} />
       </Switch>
     </Router>
