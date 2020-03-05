@@ -13,7 +13,7 @@ import { Button } from '@material-ui/core';
 
 import AppDialog from '../../../components/lib/AppDialog';
 import Edit from './Edit';
-import AppPagination from '../../../components/app/AppPagination';
+import AppPagination from '../../../components/lib/AppPagination';
 
 const useStyles = makeStyles(theme => ({
   container: {
