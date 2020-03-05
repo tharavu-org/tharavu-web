@@ -19,6 +19,21 @@ class APIError extends Error {
   }
 }
 
+async function handleInvalidResponse(response) {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  if (currentUser && response.status === 401) {
+    signout();
+  }
+
+  if (!response.ok) {
+    throw new APIError({
+      status: response.status,
+      statusText: response.statusText,
+      errors: await response.json(),
+    });
+  }
+}
+
 export async function postAPI(url = '', data = {}, patch = false) {
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   const authToken = path(['authToken'], currentUser);
@@ -30,16 +45,7 @@ export async function postAPI(url = '', data = {}, patch = false) {
     },
     body: JSON.stringify(camelToSnakeCase(data)),
   });
-  if (currentUser && response.status === 401) {
-    signout();
-  }
-  if (!response.ok) {
-    throw new APIError({
-      status: response.status,
-      statusText: response.statusText,
-      errors: await response.json(),
-    });
-  }
+  await handleInvalidResponse(response);
   return response.json();
 }
 
@@ -52,15 +58,6 @@ export async function getAPI(url = '', del = false) {
       Authorization: authToken,
     },
   });
-  if (currentUser && response.status === 401) {
-    signout();
-  }
-  if (!response.ok) {
-    throw new APIError({
-      status: response.status,
-      statusText: response.statusText,
-      errors: await response.json(),
-    });
-  }
+  await handleInvalidResponse(response);
   return response.json();
 }
