@@ -4,11 +4,10 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-import configureStore from './redux/configureStore';
+import store from './redux/configureStore';
 import Routes from './routes';
 import logUser from './utils/logUser';
 
-const store = configureStore();
 const theme = createMuiTheme();
 
 export default function App() {
