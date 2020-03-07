@@ -1,60 +1,32 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 
-import { postAPI, getAPI } from '../../utils/restClient';
+import { postAPISaga, getAPISaga } from './requestSaga';
 
 function* create(params) {
-  try {
-    yield call(postAPI, '/tharavu/events', params.payload);
-    yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield put({ type: 'GET_EVENTS' });
-  } catch (error) {
-    yield put({
-      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  yield call(postAPISaga, '/tharavu/events', params.payload);
+  yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+  yield put({ type: 'GET_EVENTS' });
 }
 
 function* update(params) {
-  try {
-    yield call(
-      postAPI,
-      `/tharavu/events/${params.payload.id}`,
-      params.payload,
-      true,
-    );
-    yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield put({ type: 'GET_EVENTS' });
-  } catch (error) {
-    yield put({
-      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  yield call(
+    postAPISaga,
+    `/tharavu/events/${params.payload.id}`,
+    params.payload,
+    true,
+  );
+  yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+  yield put({ type: 'GET_EVENTS' });
 }
 
 function* deleteEvent(params) {
-  try {
-    yield call(getAPI, `/tharavu/events/${params.payload}`, true);
-    yield put({ type: 'GET_EVENTS' });
-  } catch (error) {
-    yield put({
-      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  yield call(getAPISaga, `/tharavu/events/${params.payload}`, true);
+  yield put({ type: 'GET_EVENTS' });
 }
 
 function* getEvents() {
-  try {
-    const result = yield call(getAPI, '/tharavu/events');
-    yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
-  } catch (error) {
-    yield put({
-      type: 'SET_TOAST_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  const result = yield call(getAPISaga, '/tharavu/events');
+  yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
 }
 
 export default function* eventSaga() {

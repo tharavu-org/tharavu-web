@@ -18,14 +18,14 @@ export default async function logUser() {
   });
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   const tharavuUserId = path(['id'], currentUser);
-  const response = await postAPI('/tharavu/user-access-logs', {
+  const response = await postAPI(currentUser, '/tharavu/user-access-logs', {
     tharavu_user_id: tharavuUserId,
     fingerprint: data.hash,
     meta,
     ip_address: location.query,
     location,
   });
-  if (response.data.id) {
+  if (response.ok) {
     sessionStorage.setItem('userAccessLog', true);
   }
 }

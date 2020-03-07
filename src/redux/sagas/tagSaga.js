@@ -1,6 +1,6 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 
-import { postAPI, getAPI } from '../../utils/restClient';
+import { postAPISaga, getAPISaga } from './requestSaga';
 
 function* getTagsWithPagination() {
   const pagination = yield select(state => state.pagination.pagination);
@@ -8,59 +8,31 @@ function* getTagsWithPagination() {
 }
 
 function* create(params) {
-  try {
-    yield call(postAPI, '/tharavu/tags', params.payload);
-    yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield call(getTagsWithPagination);
-  } catch (error) {
-    yield put({
-      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  yield call(postAPISaga, '/tharavu/tags', params.payload);
+  yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+  yield call(getTagsWithPagination);
 }
 
 function* update(params) {
-  try {
-    yield call(
-      postAPI,
-      `/tharavu/tags/${params.payload.id}`,
-      params.payload,
-      true,
-    );
-    yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-    yield call(getTagsWithPagination);
-  } catch (error) {
-    yield put({
-      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  yield call(
+    postAPISaga,
+    `/tharavu/tags/${params.payload.id}`,
+    params.payload,
+    true,
+  );
+  yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+  yield call(getTagsWithPagination);
 }
 
 function* deleteTag(params) {
-  try {
-    yield call(getAPI, `/tharavu/tags/${params.payload}`, true);
-    yield call(getTagsWithPagination);
-  } catch (error) {
-    yield put({
-      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  yield call(getAPISaga, `/tharavu/tags/${params.payload}`, true);
+  yield call(getTagsWithPagination);
 }
 
 function* getTags({ payload }) {
-  try {
-    const result = yield call(getAPI, `/tharavu/tags?page=${payload.page}`);
-    yield put({ type: 'SET_TAGS', payload: result.data.tharavuTags });
-    yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
-  } catch (error) {
-    yield put({
-      type: 'SET_TOAST_ERRORS',
-      payload: error.data.errors.errors,
-    });
-  }
+  const result = yield call(getAPISaga, `/tharavu/tags?page=${payload.page}`);
+  yield put({ type: 'SET_TAGS', payload: result.data.tharavuTags });
+  yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
 }
 
 export default function* tagSaga() {
