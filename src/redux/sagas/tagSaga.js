@@ -10,6 +10,11 @@ function* getTagsWithPagination() {
 function* create(params) {
   yield call(postAPISaga, '/tharavu/tags', params.payload);
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+  yield put({
+    type: 'SHOW_TOAST',
+    payload: { variant: 'success', msg: 'Tag created successfully' },
+  });
+
   yield call(getTagsWithPagination);
 }
 
@@ -21,12 +26,20 @@ function* update(params) {
     true,
   );
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+  yield put({
+    type: 'SHOW_TOAST',
+    payload: { variant: 'success', msg: 'Tag updated' },
+  });
   yield call(getTagsWithPagination);
 }
 
 function* deleteTag(params) {
   yield call(getAPISaga, `/tharavu/tags/${params.payload}`, true);
   yield call(getTagsWithPagination);
+  yield put({
+    type: 'SHOW_TOAST',
+    payload: { variant: 'warning', msg: 'Tag deleted!' },
+  });
 }
 
 function* getTags({ payload }) {

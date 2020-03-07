@@ -5,6 +5,7 @@ import currentForm from './currentForm';
 import tag from './tag';
 import event from './event';
 import pagination from './pagination';
+import toast from './toast';
 
 export default combineReducers({
   session,
@@ -12,4 +13,5 @@ export default combineReducers({
   tag,
   event,
   pagination,
+  toast,
 });

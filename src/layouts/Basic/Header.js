@@ -6,6 +6,7 @@ import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
 import AppDialog from '../../components/lib/AppDialog';
 import SignIn from '../../components/app/SignIn';
 import AccountMenu from '../../components/app/AccountMenu';
+import Toast from '../../components/lib/Toast';
 
 const useStyles = makeStyles(() => ({
   appBar: {
@@ -63,6 +64,7 @@ export default function Header() {
           <SignIn />
         </AppDialog>
       )}
+      <Toast />
     </AppBar>
   );
 }

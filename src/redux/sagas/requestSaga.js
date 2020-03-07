@@ -8,7 +8,7 @@ function* handleBadRequest(currentUser, response) {
     yield put({
       type: 'SHOW_TOAST',
       payload: {
-        variant: 'danger',
+        variant: 'error',
         msg: 'Internal Server Error Occurred.',
       },
     });
@@ -47,7 +47,7 @@ export function* postAPISaga(url, data, patch = false) {
     yield put({
       type: 'SHOW_TOAST',
       payload: {
-        variant: 'danger',
+        variant: 'error',
         msg: 'Network problem.',
       },
     });
@@ -69,7 +69,7 @@ export function* getAPISaga(url, del = false) {
     yield put({
       type: 'SHOW_TOAST',
       payload: {
-        variant: 'danger',
+        variant: 'error',
         msg: 'Network problem.',
       },
     });
