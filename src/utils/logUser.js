@@ -1,18 +1,26 @@
-import { path } from 'ramda';
+import { path, map } from 'ramda';
+import UAParser from 'ua-parser-js';
 
 import fingerprint from './fingerprint';
 import { postAPI } from './restClient';
+
+function getDevice(parser) {
+  const devObj = parser.getDevice();
+  const fn = value => value || 'Unknown';
+  return map(fn, devObj);
+}
 
 export default async function logUser() {
   const locationFetch = await fetch(
     'http://ip-api.com/json/?fields=status,country,countryCode,region,regionName,city,lat,lon,query',
   );
   const location = await locationFetch.json();
-  const data = await fingerprint();
-  const filtered = data.meta.filter(i =>
-    ['userAgent', 'language', 'timezone', 'platform'].includes(i.key),
+  const fingerprintData = await fingerprint();
+  const filtered = fingerprintData.meta.filter(i =>
+    ['language', 'timezone'].includes(i.key),
   );
-  const meta = {};
+  const parser = new UAParser();
+  const meta = { userAgent: parser.getUA() };
   filtered.forEach(i => {
     meta[i.key] = i.value;
   });
@@ -20,10 +28,13 @@ export default async function logUser() {
   const tharavuUserId = path(['id'], currentUser);
   const response = await postAPI(currentUser, '/tharavu/user-access-logs', {
     tharavu_user_id: tharavuUserId,
-    fingerprint: data.hash,
-    meta,
+    fingerprint: fingerprintData.hash,
     ip_address: location.query,
+    browser: parser.getBrowser(),
+    device: getDevice(parser),
+    platform: parser.getOS(),
     location,
+    meta,
   });
   if (response.ok) {
     sessionStorage.setItem('userAccessLog', true);
