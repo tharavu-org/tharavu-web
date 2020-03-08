@@ -24,9 +24,11 @@ export default function TagsInputField(props) {
     }
     async function fetchData() {
       const response = await getAPI(
+        null,
         `/tharavu/tags?name_cont=${inputValue}&page=1&per=5`,
       );
-      setOptions(response.data.tharavuTags);
+      const tags = await response.json();
+      setOptions(tags.data.tharavuTags);
     }
     fetchData();
   }, [inputValue]);
