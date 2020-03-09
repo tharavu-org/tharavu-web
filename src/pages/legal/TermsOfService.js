@@ -107,17 +107,17 @@ export default function TermsOfService() {
           </li>
           <li>
             Children below required age can be allowed to access the service
-            with guidance of their parent or legal guardian.
+            with guidance of their parent or legal guardians.
           </li>
           <li>
-            A parent or guardian are responsible for their child&lsquo;s
+            A parent or guardians are responsible for their child&lsquo;s
             activity on the services and they must agree to these terms and
             conditions.
           </li>
           <li>
             Based on the user roles and permissions, you can create, modify and
             remove contents here. Most of your contents will be publicly
-            available.
+            available or accessible.
           </li>
           <li>
             You have no obligation to use or provide any content to our
@@ -223,7 +223,7 @@ export default function TermsOfService() {
       </Typography>
       <Typography className={classes.subtitle} variant="subtitle1">
         We reserve the right to modify or replace these Terms and Conditions at
-        any time. If a revision is made, we will provide you at least 7 days
+        any time. If a revision is made, we will provide you reasonable time for
         notice prior to any new terms and conditions taking effect.
         <br />
         We will get appropriate consent from you before proceeding with the new
@@ -236,7 +236,7 @@ export default function TermsOfService() {
       <Typography className={classes.subtitle} variant="subtitle1">
         If you have any questions about these Terms and Conditions, You
         can&nbsp;
-        <a href="/contact-us">contact us</a>
+        <a href="/contact-us">contact us.</a>
       </Typography>
     </Paper>
   );
