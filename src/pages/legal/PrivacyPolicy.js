@@ -48,8 +48,8 @@ export default function PrivacyPolicy() {
           <li>
             We collect technical information about the apps, browsers and
             devices that you use to access our services, including, IP address,
-            browser type and version, time zone setting, operating system and
-            platform, device type.
+            browser type and version, time zone setting, operating system,
+            platform and device type.
           </li>
           <li>
             We also collect some personal information when you sign up to the
@@ -81,9 +81,10 @@ export default function PrivacyPolicy() {
       <Typography className={classes.subtitle} variant="subtitle1">
         We use your information to deliver, maintain and improve our services.
         <ul>
+          <li>We use IP address to log user interactions to our services.</li>
           <li>
-            We use IP address to log user interactions to our services and get
-            location information for analytics purposes.
+            We use your location information for analytics purposes and to
+            provide customized location based services.
           </li>
           <li>
             We use device information such as browser type and version, time
@@ -184,10 +185,27 @@ export default function PrivacyPolicy() {
         where your information is processed and stored, we apply the same
         protections described in this policy.
         <ul>
+          <li>
+            The website frontend is being developed at&nbsp;
+            <a href="https://github.com">https://github.com</a>
+            &nbsp;that provides hosting for open source software development
+            version control.
+          </li>
+          <li>
+            You can access the source at&nbsp;
+            <a href="https://github.com/tharavu-org">
+              https://github.com/tharavu-org
+            </a>
+          </li>
           <li>We do not own our web servers.</li>
           <li>
             We store and process your information in third party web servers,
             commonly known as service providers or web hosting providers.
+          </li>
+          <li>
+            We use third party service called&nbsp;
+            <a href="http://ip-api.com">ip-api.com</a>
+            &nbsp;to send your ip address and get your location information.
           </li>
           <li>
             Your information may be processed on servers located outside of the
