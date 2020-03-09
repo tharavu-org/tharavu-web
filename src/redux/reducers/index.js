@@ -6,6 +6,7 @@ import tag from './tag';
 import event from './event';
 import pagination from './pagination';
 import toast from './toast';
+import userLog from './userLog';
 
 export default combineReducers({
   session,
@@ -14,4 +15,5 @@ export default combineReducers({
   event,
   pagination,
   toast,
+  userLog,
 });

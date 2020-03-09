@@ -6,6 +6,7 @@ import Dashboard from './Dashboard';
 import PageNotFound from '../PageNotFound';
 import Tags from './Tags';
 import Events from './Events';
+import UserLog from './UserLog';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -31,6 +32,8 @@ export default function Member() {
         return <Tags />;
       case 'events':
         return <Events />;
+      case 'user logs':
+        return <UserLog />;
 
       default:
         return <PageNotFound />;

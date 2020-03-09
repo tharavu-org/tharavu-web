@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Sidebar({ menu, onMenuChange }) {
   const classes = useStyles();
-  const menuOptions = ['dashboard', 'events', 'tags', 'members'];
+  const menuOptions = ['dashboard', 'events', 'tags', 'members', 'user logs'];
 
   const renderMenuOptions = () => {
     return menuOptions.map(i => (
