@@ -29,7 +29,7 @@ export default function Events() {
         centered
       >
         <Tab label="Live" />
-        <Tab label="Draft" />
+        <Tab label="Drafts" />
       </Tabs>
       {value === 0 ? (
         <List />

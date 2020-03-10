@@ -3,7 +3,7 @@ import { Paper, Chip, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(4),
     padding: theme.spacing(2),
   },
   chip: {

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Event from './Event';
+import AppPagination from '../../../components/lib/AppPagination';
 
 export default function List() {
   const dispatch = useDispatch();
@@ -10,7 +11,14 @@ export default function List() {
     dispatch({ type: 'GET_EVENTS' });
   }, [dispatch]);
 
-  return rows.map((e, i) => {
+  const events = rows.map((e, i) => {
     return <Event key={i.toString()} event={e} />;
   });
+
+  return (
+    <>
+      {events}
+      <AppPagination actionType="GET_EVENTS" />
+    </>
+  );
 }
