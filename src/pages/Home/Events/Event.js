@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
   },
   chip: {
     marginRight: theme.spacing(0.5),
+    marginTop: theme.spacing(0.5),
   },
 }));
 
