@@ -48,9 +48,19 @@ function* getEvents({ payload }) {
   yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
 }
 
+function* searchEvents({ payload }) {
+  const result = yield call(
+    getAPISaga,
+    `/tharavu/events?page=${payload.page}&tharavu_tags_name_eq=${payload.name}`,
+  );
+  yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
+  yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
+}
+
 export default function* eventSaga() {
   yield takeLatest('CREATE_EVENT', create);
   yield takeLatest('GET_EVENTS', getEvents);
+  yield takeLatest('SEARCH_EVENTS', searchEvents);
   yield takeLatest('UPDATE_EVENT', update);
   yield takeLatest('DELETE_EVENT', deleteEvent);
 }

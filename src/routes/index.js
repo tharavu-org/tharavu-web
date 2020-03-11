@@ -10,12 +10,14 @@ import PrivacyPolicy from '../pages/legal/PrivacyPolicy';
 import LegalRoute from './LegalRoute';
 import TermsOfService from '../pages/legal/TermsOfService';
 import MemberRoute from './MemberRoute';
+import Explore from '../pages/Explore';
 
 export default function Routes() {
   return (
     <Router>
       <Switch>
         <AppRoute exact path="/" component={Home} />
+        <AppRoute exact path="/explore/tags/:tagName" component={Explore} />
         <AppRoute exact path="/contact-us" component={ContactUs} />
         <LegalRoute
           exact
