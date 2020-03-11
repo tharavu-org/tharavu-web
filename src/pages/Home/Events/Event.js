@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper, Chip, makeStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -23,8 +24,11 @@ export default function Event({ event }) {
         className={classes.chip}
         variant="outlined"
         color="primary"
-        component="a"
-        href={`/explore/?tag=${t.name}`}
+        component={React.forwardRef((props, ref) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <Link ref={ref} {...props} to={`/explore/tags/${t.name}`} />
+        ))}
+        href={`/explore/tags/${t.name}`}
         clickable
       />
     ));
