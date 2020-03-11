@@ -28,7 +28,6 @@ export default function Event({ event }) {
           // eslint-disable-next-line react/jsx-props-no-spreading
           <Link ref={ref} {...props} to={`/explore/tags/${t.name}`} />
         ))}
-        href={`/explore/tags/${t.name}`}
         clickable
       />
     ));
