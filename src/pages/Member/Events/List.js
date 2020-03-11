@@ -39,7 +39,7 @@ export default function List() {
   }, [currentFormSuccess]);
 
   useEffect(() => {
-    dispatch({ type: 'GET_EVENTS' });
+    dispatch({ type: 'GET_EVENTS', payload: { page: 1 } });
   }, [dispatch]);
 
   const handleEdit = obj => {

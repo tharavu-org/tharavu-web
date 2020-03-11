@@ -8,7 +8,7 @@ export default function List() {
   const rows = useSelector(state => state.event.events);
 
   useEffect(() => {
-    dispatch({ type: 'GET_EVENTS' });
+    dispatch({ type: 'GET_EVENTS', payload: { page: 1 } });
   }, [dispatch]);
 
   const events = rows.map((e, i) => {
