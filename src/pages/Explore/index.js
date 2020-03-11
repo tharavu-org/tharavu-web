@@ -7,7 +7,6 @@ const useStyles = makeStyles(theme => ({
     display: 'grid',
     gridTemplateColumns: '50% 50%',
     padding: theme.spacing(3),
-    height: `calc(100% - ${theme.spacing(6)}px)`,
   },
 }));
 
