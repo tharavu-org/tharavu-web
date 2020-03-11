@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Event from './Event';
+import Event from '../../../components/app/Event';
 import AppPagination from '../../../components/lib/AppPagination';
 
 export default function List() {
