@@ -23,6 +23,9 @@ export default function Event({ event }) {
         className={classes.chip}
         variant="outlined"
         color="primary"
+        component="a"
+        href={`/explore/?tag=${t.name}`}
+        clickable
       />
     ));
   };
