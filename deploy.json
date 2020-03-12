@@ -1,7 +1,7 @@
 {
     "s3": {
         "production": {
-            "buildDir": "dist",
+            "buildDir": "build",
             "bucket": "tharavu.org",
             "cacheFilePatterns": [
                 "**/static/**"

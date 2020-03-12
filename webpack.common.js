@@ -7,8 +7,8 @@ module.exports = {
     app: './src/index.js',
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'build'),
     publicPath: '/',
   },
   plugins: [
@@ -30,5 +30,18 @@ module.exports = {
         use: ['file-loader'],
       },
     ],
+  },
+  optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
 };
