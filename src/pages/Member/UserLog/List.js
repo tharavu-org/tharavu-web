@@ -92,7 +92,7 @@ export default function List() {
                   {row.location.region}
                 </TableCell>
                 <TableCell component="th" scope="row">
-                  {row.location.country}
+                  {row.location.countryName}
                 </TableCell>
                 <TableCell component="th" scope="row">
                   {row.createdAt}

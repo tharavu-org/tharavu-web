@@ -11,10 +11,9 @@ function getDevice(parser) {
 }
 
 export default async function logUser() {
-  const locationFetch = await fetch(
-    'http://ip-api.com/json/?fields=status,country,countryCode,region,regionName,city,lat,lon,query',
-    { mode: 'cors' },
-  );
+  const locationFetch = await fetch('https://api.ipdata.co/?api-key=test', {
+    mode: 'cors',
+  });
   const location = await locationFetch.json();
   const fingerprintData = await fingerprint();
   const filtered = fingerprintData.meta.filter(i =>
@@ -30,7 +29,7 @@ export default async function logUser() {
   const response = await postAPI(currentUser, '/tharavu/user-access-logs', {
     tharavu_user_id: tharavuUserId,
     fingerprint: fingerprintData.hash,
-    ip_address: location.query,
+    ip_address: location.ip,
     browser: parser.getBrowser(),
     device: getDevice(parser),
     platform: parser.getOS(),
