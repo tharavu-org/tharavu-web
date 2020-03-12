@@ -26,7 +26,6 @@ export default function AppPagination({ actionType }) {
       <Pagination
         count={pagination.totalPages}
         page={page}
-        color="primary"
         onChange={handlePaginationChange}
       />
     </Box>
