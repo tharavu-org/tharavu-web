@@ -1,6 +1,7 @@
 import React from 'react';
 import { Paper, Chip, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import TextBadge from '../lib/TextBadge';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -22,7 +23,6 @@ export default function Event({ event }) {
         key={i.toString()}
         label={t.name}
         className={classes.chip}
-        variant="outlined"
         color="primary"
         component={React.forwardRef((props, ref) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -33,5 +33,12 @@ export default function Event({ event }) {
     ));
   };
 
-  return <Paper className={classes.paper}>{renderTags()}</Paper>;
+  return (
+    <Paper className={classes.paper}>
+      <div>{renderTags()}</div>
+      <div>
+        <TextBadge text={event.startDate} />
+      </div>
+    </Paper>
+  );
 }
