@@ -13,6 +13,7 @@ function getDevice(parser) {
 export default async function logUser() {
   const locationFetch = await fetch(
     'http://ip-api.com/json/?fields=status,country,countryCode,region,regionName,city,lat,lon,query',
+    { mode: 'cors' },
   );
   const location = await locationFetch.json();
   const fingerprintData = await fingerprint();
