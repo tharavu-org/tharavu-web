@@ -18,8 +18,8 @@ export default function Edit({ event }) {
     return obj;
   };
 
-  const getTagsAttributes = newTags => {
-    let removedItems = without(newTags, event.tags);
+  const getTagsAttributes = (newTags, eventTags) => {
+    let removedItems = without(newTags, eventTags);
     removedItems = removedItems.map(i => {
       const obj = { _destroy: true };
       return { ...obj, ...i };
@@ -42,8 +42,18 @@ export default function Edit({ event }) {
     dispatch({
       type: 'UPDATE_EVENT',
       payload: produce(values, draftState => {
-        const tharavuEventTagsAttributes = getTagsAttributes(values.tags);
-        draftState.tharavuEventTagsAttributes = tharavuEventTagsAttributes;
+        draftState.tharavuEventTagsAttributes = getTagsAttributes(
+          values.tags,
+          event.tags,
+        );
+        draftState.tharavuEventLocationTagsAttributes = getTagsAttributes(
+          values.locationTags,
+          event.locationTags,
+        );
+        draftState.tharavuEventRelationTagsAttributes = getTagsAttributes(
+          values.relationTags,
+          event.relationTags,
+        );
         draftState.startDate = format(
           tryParseISO(values.startDate),
           'yyyy-M-d',

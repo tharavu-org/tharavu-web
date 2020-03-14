@@ -14,6 +14,20 @@ export default function Form({ onSubmit, initialValues }) {
           <Field name="tags" label="Tags" component={TagsInputField} />
         </Box>
         <Box display="flex" m={2}>
+          <Field
+            name="locationTags"
+            label="Location Tags"
+            component={TagsInputField}
+          />
+        </Box>
+        <Box display="flex" m={2}>
+          <Field
+            name="relationTags"
+            label="Relation Tags"
+            component={TagsInputField}
+          />
+        </Box>
+        <Box display="flex" m={2}>
           <Field name="startDate" label="Start Date" component={MUIDateField} />
         </Box>
         <Box display="flex" m={2}>

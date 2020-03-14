@@ -106,7 +106,7 @@ export default function List() {
       <AppPagination actionType="GET_EVENTS" />
       <AppDialog
         open={dialogOpen}
-        title="Edit Tag"
+        title="Edit Event"
         onClose={() => setDialogOpen(false)}
       >
         <Edit event={event} />

@@ -12,24 +12,38 @@ export default function New() {
 
   const dateTime = new Date();
   dateTime.setHours(0, 0, 0);
+
   const initialValues = {
     createdById: currentUser.id,
     tags: [],
+    locationTags: [],
+    relationTags: [],
     startDate: dateTime,
     endDate: dateTime,
     startsAt: dateTime,
     endsAt: dateTime,
   };
 
+  const getTagsWithPosition = tags => {
+    return tags.map((item, index) => ({
+      tharavuTagId: item.id,
+      position: index,
+    }));
+  };
+
   const onSubmit = values => {
     dispatch({
       type: 'CREATE_EVENT',
       payload: produce(values, draftState => {
-        const tharavuEventTagsAttributes = values.tags.map((item, index) => ({
-          tharavuTagId: item.id,
-          position: index,
-        }));
-        draftState.tharavuEventTagsAttributes = tharavuEventTagsAttributes;
+        draftState.tharavuEventTagsAttributes = getTagsWithPosition(
+          values.tags,
+        );
+        draftState.tharavuEventLocationTagsAttributes = getTagsWithPosition(
+          values.locationTags,
+        );
+        draftState.tharavuEventRelationTagsAttributes = getTagsWithPosition(
+          values.relationTags,
+        );
         draftState.startDate = format(values.startDate, 'yyyy-M-d');
         draftState.endDate = format(values.endDate, 'yyyy-M-d');
         draftState.startsAt = format(values.startsAt, 'hh:mm:ss');
