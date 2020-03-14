@@ -29,7 +29,7 @@ export default function Event({ event }) {
         color="primary"
         component={React.forwardRef((props, ref) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
-          <Link ref={ref} {...props} to={`/explore/tags/${t.name}`} />
+          <Link ref={ref} {...props} to={`/explore?tags=${t.name}`} />
         ))}
         clickable
       />
