@@ -7,8 +7,9 @@ import Events from './Events';
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'grid',
-    gridTemplateColumns: '50% 50%',
+    gridTemplateColumns: '20% 80%',
     padding: theme.spacing(3),
+    height: `calc(100% - ${theme.spacing(6)}px)`,
   },
 }));
 
@@ -21,20 +22,20 @@ export default function Explore({ location }) {
   useEffect(() => {
     const conditionMap = { tags: 'tharavu_tags_name_eq' };
     if (conditionMap[condition]) {
-    dispatch({
-      type: 'GET_EVENTS',
+      dispatch({
+        type: 'GET_EVENTS',
         payload: {
           page: 1,
           searchParams: `${conditionMap[condition]}=${value}`,
         },
-    });
+      });
     }
   }, [dispatch, condition, value]);
 
   return (
     <div className={classes.container}>
-      <Events />
       <div />
+      <Events />
     </div>
   );
 }
