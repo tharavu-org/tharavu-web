@@ -9,6 +9,9 @@ export default function List() {
 
   useEffect(() => {
     dispatch({ type: 'GET_EVENTS', payload: { page: 1 } });
+    return () => {
+      dispatch({ type: 'RESET_EVENTS' });
+    };
   }, [dispatch]);
 
   const events = rows.map((e, i) => {

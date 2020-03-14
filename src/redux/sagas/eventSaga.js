@@ -51,9 +51,15 @@ function* getEvents({ payload }) {
   yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
 }
 
+function* resetEvents() {
+  yield put({ type: 'SET_EVENTS', payload: [] });
+  yield put({ type: 'SET_PAGINATION', payload: {} });
+}
+
 export default function* eventSaga() {
   yield takeLatest('CREATE_EVENT', create);
   yield takeLatest('GET_EVENTS', getEvents);
   yield takeLatest('UPDATE_EVENT', update);
   yield takeLatest('DELETE_EVENT', deleteEvent);
+  yield takeLatest('RESET_EVENTS', resetEvents);
 }
