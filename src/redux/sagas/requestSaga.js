@@ -4,17 +4,26 @@ import signout from '../../utils/session';
 import { getAPI, postAPI } from '../../utils/restClient';
 
 function* handleBadRequest(currentUser, response) {
-  if (response.status === 500) {
+  if (!currentUser && response.status === 401) {
+    yield put({
+      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
+      payload: 'Invalid email address or password.',
+    });
+    yield cancel();
+  }
+  if (currentUser && response.status === 401) {
+    signout();
+  }
+  if (response.status === 404) {
     yield put({
       type: 'SHOW_TOAST',
       payload: {
         variant: 'error',
-        msg: 'Internal Server Error Occurred.',
+        msg: 'Resource not found.',
       },
     });
     yield cancel();
   }
-
   if (response.status === 422) {
     const { errors } = yield response.json();
     yield put({
@@ -23,13 +32,13 @@ function* handleBadRequest(currentUser, response) {
     });
     yield cancel();
   }
-
-  if (currentUser && response.status === 401) {
-    signout();
-  } else {
+  if (response.status === 500) {
     yield put({
-      type: 'SET_CURRENT_FORM_BACKEND_ERRORS',
-      payload: 'Invalid email address or password.',
+      type: 'SHOW_TOAST',
+      payload: {
+        variant: 'error',
+        msg: 'Internal Server Error Occurred.',
+      },
     });
     yield cancel();
   }
