@@ -1,7 +1,6 @@
 import React from 'react';
-import { Paper, Chip, makeStyles } from '@material-ui/core';
+import { Paper, Chip, makeStyles, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import TextBadge from '../lib/TextBadge';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -11,6 +10,10 @@ const useStyles = makeStyles(theme => ({
   chip: {
     marginRight: theme.spacing(0.5),
     marginTop: theme.spacing(0.5),
+  },
+  subTags: {
+    marginRight: theme.spacing(0.5),
+    marginTop: theme.spacing(3),
   },
 }));
 
@@ -33,12 +36,42 @@ export default function Event({ event }) {
     ));
   };
 
+  const renderLocationTags = () => {
+    return event.locationTags.map((t, i) => (
+      <Chip
+        key={i.toString()}
+        label={t.name}
+        className={classes.subTags}
+        size="small"
+        component={React.forwardRef((props, ref) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <Link ref={ref} {...props} to={`/explore?location=${t.name}`} />
+        ))}
+        clickable
+      />
+    ));
+  };
+
   return (
     <Paper className={classes.paper}>
       <div>{renderTags()}</div>
-      <div>
-        <TextBadge text={event.startDate} />
-      </div>
+      <Box display="flex" justifyContent="space-between">
+        <Chip
+          label={event.startDate}
+          className={classes.subTags}
+          size="small"
+          component={React.forwardRef((props, ref) => (
+            <Link
+              ref={ref}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...props}
+              to={`/explore?startDate=${event.startDate}`}
+            />
+          ))}
+          clickable
+        />
+        <Box>{renderLocationTags()}</Box>
+      </Box>
     </Paper>
   );
 }
