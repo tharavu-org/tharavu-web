@@ -20,7 +20,11 @@ export default function Explore({ location }) {
   const [, condition, value] = regex.exec(location.search);
 
   useEffect(() => {
-    const conditionMap = { tags: 'tharavu_tags_name_eq' };
+    const conditionMap = {
+      tags: 'tharavu_tags_name_eq',
+      location: 'location_tags_name_eq',
+      startDate: 'start_date_eq',
+    };
     if (conditionMap[condition]) {
       dispatch({
         type: 'GET_EVENTS',
