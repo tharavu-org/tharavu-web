@@ -20,10 +20,15 @@ export default function Explore({ location }) {
 
   useEffect(() => {
     const conditionMap = { tags: 'tharavu_tags_name_eq' };
+    if (conditionMap[condition]) {
     dispatch({
       type: 'GET_EVENTS',
-      payload: { page: 1, searchParams: `${conditionMap[condition]}=${value}` },
+        payload: {
+          page: 1,
+          searchParams: `${conditionMap[condition]}=${value}`,
+        },
     });
+    }
   }, [dispatch, condition, value]);
 
   return (
