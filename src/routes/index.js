@@ -17,7 +17,7 @@ export default function Routes() {
     <Router>
       <Switch>
         <AppRoute exact path="/" component={Home} />
-        <AppRoute exact path="/explore/tags/:tagName" component={Explore} />
+        <AppRoute exact path="/explore" component={Explore} />
         <AppRoute exact path="/contact-us" component={ContactUs} />
         <LegalRoute
           exact
