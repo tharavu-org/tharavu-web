@@ -204,7 +204,7 @@ export default function PrivacyPolicy() {
           </li>
           <li>
             We use third party service called&nbsp;
-            <a href="https://ipdata.co">ipdata.co</a>
+            <a href="https://ipapi.co">ipapi.co</a>
             &nbsp;to send your ip address and get your location information.
           </li>
           <li>

@@ -11,7 +11,7 @@ function getDevice(parser) {
 }
 
 export default async function logUser() {
-  const locationFetch = await fetch('https://api.ipdata.co/?api-key=test', {
+  const locationFetch = await fetch('https://ipapi.co/json', {
     mode: 'cors',
   });
   const location = await locationFetch.json();
