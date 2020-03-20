@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
+import { TextField, Chip } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -33,6 +33,13 @@ export default function TagsInputField(props) {
     fetchData();
   }, [inputValue]);
 
+  const renderTags = (tags, getTagProps) => {
+    return tags.map((option, index) => (
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <Chip color="primary" label={option.name} {...getTagProps({ index })} />
+    ));
+  };
+
   return (
     <Autocomplete
       className={classes.autoComplete}
@@ -52,6 +59,7 @@ export default function TagsInputField(props) {
           onChange={e => setInputValue(e.target.value)}
         />
       )}
+      renderTags={renderTags}
     />
   );
 }
