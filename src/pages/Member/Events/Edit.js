@@ -56,9 +56,9 @@ export default function Edit({ event }) {
         );
         draftState.startDate = format(
           tryParseISO(values.startDate),
-          'yyyy-M-d',
+          'yyyy-MM-d',
         );
-        draftState.endDate = format(tryParseISO(values.endDate), 'yyyy-M-d');
+        draftState.endDate = format(tryParseISO(values.endDate), 'yyyy-MM-d');
         draftState.startsAt = format(tryParseISO(values.startsAt), 'hh:mm:ss');
         draftState.endsAt = format(tryParseISO(values.endsAt), 'hh:mm:ss');
       }),
