@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import { LocalizationProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@material-ui/pickers/adapter/date-fns';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import store from './redux/configureStore';
@@ -26,13 +26,18 @@ export default function App() {
     }
   }, []);
 
+  const formats = {
+    normalDate: 'yyyy-MM-dd',
+    keyboardDate: 'yyyy-MM-dd',
+  };
+
   return (
     <Provider store={store}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <LocalizationProvider dateAdapter={DateFnsUtils} dateFormats={formats}>
         <ThemeProvider theme={theme}>
           <Routes />
         </ThemeProvider>
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     </Provider>
   );
 }

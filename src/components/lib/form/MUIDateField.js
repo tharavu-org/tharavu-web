@@ -1,15 +1,13 @@
 import React from 'react';
 import { DesktopDatePicker } from '@material-ui/pickers';
 
-export default function MUIDateField(props) {
-  const { label, onChange, value } = props;
+export default function MUIDateField({ label, onChange, value }) {
   return (
     <DesktopDatePicker
       autoOk
       variant="outlined"
       label={label}
-      format="yyyy/MM/dd"
-      mask="____/__/__"
+      disableMaskedInput
       value={value}
       onChange={onChange}
       fullWidth

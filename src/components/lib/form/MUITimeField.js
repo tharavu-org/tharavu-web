@@ -10,8 +10,6 @@ export default function MUIDateField(props) {
       variant="outlined"
       label={label}
       views={['hours', 'minutes', 'seconds']}
-      format="HH:mm:ss"
-      mask="__:__:__"
       value={value}
       onChange={onChange}
       fullWidth
