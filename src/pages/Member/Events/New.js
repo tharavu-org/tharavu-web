@@ -44,8 +44,8 @@ export default function New() {
         draftState.tharavuEventRelationTagsAttributes = getTagsWithPosition(
           values.relationTags,
         );
-        draftState.startDate = format(values.startDate, 'yyyy-M-d');
-        draftState.endDate = format(values.endDate, 'yyyy-M-d');
+        draftState.startDate = format(values.startDate, 'yyyy-MM-dd');
+        draftState.endDate = format(values.endDate, 'yyyy-MM-dd');
         draftState.startsAt = format(values.startsAt, 'hh:mm:ss');
         draftState.endsAt = format(values.endsAt, 'hh:mm:ss');
       }),

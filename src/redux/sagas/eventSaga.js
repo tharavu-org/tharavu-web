@@ -18,6 +18,17 @@ function* create(params) {
   yield call(getEventsWithPagination);
 }
 
+function* filterEvents(params) {
+  const result = yield call(
+    postAPISaga,
+    '/tharavu/filter-events',
+    params.payload,
+  );
+  yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
+  yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
+  yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
+}
+
 function* update(params) {
   yield call(
     postAPISaga,
@@ -62,4 +73,5 @@ export default function* eventSaga() {
   yield takeLatest('UPDATE_EVENT', update);
   yield takeLatest('DELETE_EVENT', deleteEvent);
   yield takeLatest('RESET_EVENTS', resetEvents);
+  yield takeLatest('FILTER_EVENTS', filterEvents);
 }
