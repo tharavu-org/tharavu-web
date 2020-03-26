@@ -31,8 +31,8 @@ export default function Form({ onSubmit, initialValues }) {
           <Field name="endDate" label="End Date" component={MUIDateField} />
         </Box>
         <Box display="flex" flexDirection="row-reverse" m={2}>
-          <Button type="submit" variant="contained" color="primary">
-            Submit
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Filter
           </Button>
         </Box>
       </Box>
