@@ -20,7 +20,12 @@ export default function Form({ onSubmit, initialValues }) {
           />
         </Box>
         <Box display="flex" m={2}>
-          <Field name="startDate" label="Start Date" component={MUIDateField} />
+          <Field
+            name="startDate"
+            label="Start Date"
+            component={MUIDateField}
+            startDate
+          />
         </Box>
         <Box display="flex" m={2}>
           <Field name="endDate" label="End Date" component={MUIDateField} />
