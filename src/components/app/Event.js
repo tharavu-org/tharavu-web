@@ -2,7 +2,7 @@ import React from 'react';
 import { Paper, Chip, makeStyles, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(4),
     padding: theme.spacing(2),
@@ -45,7 +45,7 @@ export default function Event({ event }) {
         size="small"
         component={React.forwardRef((props, ref) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
-          <Link ref={ref} {...props} to={`/explore?location=${t.name}`} />
+          <Link ref={ref} {...props} to={`/explore?locationTags=${t.name}`} />
         ))}
         clickable
       />
