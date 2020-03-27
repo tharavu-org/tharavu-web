@@ -19,7 +19,7 @@ export default function List() {
       ) : (
         <Alert severity="info">No events found</Alert>
       )}
-      <AppPagination actionType="GET_EVENTS" />
+      <AppPagination actionType="FILTER_EVENTS" />
     </>
   );
 }

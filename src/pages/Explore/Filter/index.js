@@ -53,7 +53,15 @@ export default function Filter() {
         delete draftState.tags;
         delete draftState.locationTags;
       });
-      dispatch({ type: 'FILTER_EVENTS', payload: finalValues });
+      dispatch({
+        type: 'FILTER_EVENTS',
+        payload: finalValues,
+        page: 1,
+      });
+      dispatch({
+        type: 'SET_PAGINATION_PAYLOAD',
+        payload: finalValues,
+      });
     },
     [dispatch],
   );

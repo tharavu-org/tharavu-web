@@ -3,7 +3,7 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { postAPISaga, getAPISaga } from './requestSaga';
 
 function* getEventsWithPagination() {
-  const pagination = yield select(state => state.pagination.pagination);
+  const pagination = yield select((state) => state.pagination.pagination);
   yield put({ type: 'GET_EVENTS', payload: { page: pagination.currentPage } });
 }
 
@@ -21,7 +21,7 @@ function* create(params) {
 function* filterEvents(params) {
   const result = yield call(
     postAPISaga,
-    '/tharavu/filter-events',
+    `/tharavu/filter-events?page=${params.page}`,
     params.payload,
   );
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
@@ -53,11 +53,8 @@ function* deleteEvent(params) {
   yield call(getEventsWithPagination);
 }
 
-function* getEvents({ payload }) {
-  const result = yield call(
-    getAPISaga,
-    `/tharavu/events?page=${payload.page}&${payload.searchParams}`,
-  );
+function* getEvents({ page }) {
+  const result = yield call(getAPISaga, `/tharavu/events?page=${page}`);
   yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
   yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
 }

@@ -3,7 +3,7 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { postAPISaga, getAPISaga } from './requestSaga';
 
 function* getTagsWithPagination() {
-  const pagination = yield select(state => state.pagination.pagination);
+  const pagination = yield select((state) => state.pagination.pagination);
   yield put({ type: 'GET_TAGS', payload: { page: pagination.currentPage } });
 }
 
@@ -42,8 +42,8 @@ function* deleteTag(params) {
   });
 }
 
-function* getTags({ payload }) {
-  const result = yield call(getAPISaga, `/tharavu/tags?page=${payload.page}`);
+function* getTags({ page }) {
+  const result = yield call(getAPISaga, `/tharavu/tags?page=${page}`);
   yield put({ type: 'SET_TAGS', payload: result.data.tharavuTags });
   yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
 }

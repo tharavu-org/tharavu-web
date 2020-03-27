@@ -2,11 +2,8 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 
 import { getAPISaga } from './requestSaga';
 
-function* getUserLogs({ payload }) {
-  const result = yield call(
-    getAPISaga,
-    `/tharavu/user-logs?page=${payload.page}`,
-  );
+function* getUserLogs({ page }) {
+  const result = yield call(getAPISaga, `/tharavu/user-logs?page=${page}`);
   yield put({
     type: 'SET_USER_LOGS',
     payload: result.data.tharavuUserAccessLogs,
