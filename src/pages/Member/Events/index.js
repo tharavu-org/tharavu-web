@@ -8,7 +8,7 @@ import List from './List';
 
 export default function Events() {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const currentFormSuccess = useSelector(state => state.currentForm.success);
+  const currentFormSuccess = useSelector((state) => state.currentForm.success);
 
   useEffect(() => {
     if (currentFormSuccess) {
