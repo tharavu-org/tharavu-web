@@ -6,9 +6,9 @@ function* getUserLogs({ page }) {
   const result = yield call(getAPISaga, `/tharavu/user-logs?page=${page}`);
   yield put({
     type: 'SET_USER_LOGS',
-    payload: result.data.tharavuUserAccessLogs,
+    payload: result.data,
   });
-  yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
+  yield put({ type: 'SET_PAGINATION', payload: result.pagination });
 }
 
 export default function* tagSaga() {

@@ -25,8 +25,8 @@ function* filterEvents(params) {
     params.payload,
   );
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-  yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
-  yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
+  yield put({ type: 'SET_EVENTS', payload: result.data });
+  yield put({ type: 'SET_PAGINATION', payload: result.pagination });
 }
 
 function* update(params) {
@@ -55,8 +55,8 @@ function* deleteEvent(params) {
 
 function* getEvents({ page }) {
   const result = yield call(getAPISaga, `/tharavu/events?page=${page}`);
-  yield put({ type: 'SET_EVENTS', payload: result.data.tharavuEvents });
-  yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
+  yield put({ type: 'SET_EVENTS', payload: result.data });
+  yield put({ type: 'SET_PAGINATION', payload: result.pagination });
 }
 
 function* resetEvents() {

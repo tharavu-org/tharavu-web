@@ -44,8 +44,8 @@ function* deleteTag(params) {
 
 function* getTags({ page }) {
   const result = yield call(getAPISaga, `/tharavu/tags?page=${page}`);
-  yield put({ type: 'SET_TAGS', payload: result.data.tharavuTags });
-  yield put({ type: 'SET_PAGINATION', payload: result.data.pagination });
+  yield put({ type: 'SET_TAGS', payload: result.data });
+  yield put({ type: 'SET_PAGINATION', payload: result.pagination });
 }
 
 export default function* tagSaga() {
