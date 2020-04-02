@@ -42,8 +42,8 @@ export default function Filter() {
   const handleSubmit = useCallback(
     (values) => {
       const finalValues = produce(values, (draftState) => {
-        draftState.tharavuTagsNameEqAny = getTagNames(values.tags);
-        draftState.locationTagsNameEqAny = getTagNames(values.locationTags);
+        draftState.tagsEqAny = getTagNames(values.tags);
+        draftState.locationTagsEqAny = getTagNames(values.locationTags);
         if (values.startDate && values.endDate) {
           draftState.periodBetween = [
             format(values.startDate, 'yyyy-MM-dd'),
@@ -52,6 +52,8 @@ export default function Filter() {
         }
         delete draftState.tags;
         delete draftState.locationTags;
+        delete draftState.startDate;
+        delete draftState.endDate;
       });
       dispatch({
         type: 'FILTER_EVENTS',
