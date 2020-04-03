@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Paper, Tabs, Tab, Typography } from '@material-ui/core';
+import { Paper, Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import List from './List';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     height: `calc(100% - ${theme.spacing(4)}px)`,
     padding: theme.spacing(2),
@@ -31,11 +31,7 @@ export default function Events() {
         <Tab label="Live" />
         <Tab label="Drafts" />
       </Tabs>
-      {value === 0 ? (
-        <List />
-      ) : (
-        <Typography variant="body1">No Events</Typography>
-      )}
+      {value === 0 ? <List live /> : <List live={false} />}
     </Paper>
   );
 }

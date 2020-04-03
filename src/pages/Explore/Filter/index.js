@@ -57,8 +57,7 @@ export default function Filter() {
       });
       dispatch({
         type: 'FILTER_EVENTS',
-        payload: finalValues,
-        page: 1,
+        payload: { data: finalValues, page: 1 },
       });
       dispatch({
         type: 'SET_PAGINATION_PAYLOAD',
