@@ -6,6 +6,7 @@ import {
 } from '@open-tech-world/react-form';
 import { Button, Box } from '@material-ui/core';
 
+import AsyncAutocompleteField from '../../../components/lib/form/AsyncAutocompleteField';
 import TagsInputField from '../../../components/lib/form/TagsInputField';
 import MUIDateField from '../../../components/lib/form/MUIDateField';
 import MUITimeField from '../../../components/lib/form/MUITimeField';
@@ -16,69 +17,78 @@ import MUISelectField from '../../../components/lib/form/MUISelectField';
 export default function Form({ onSubmit, initialValues }) {
   const renderNumeralsField = (rows, push, remove) => {
     return (
-      <div>
+      <Box display="flex" flexDirection="column" flexGrow="1">
         {rows.map((r, index) => (
-          <div key={r}>
-            <Field
-              name={`${r}.tagName`}
-              label="Tag Name"
-              component={MUITextField}
-              type="text"
-            />
-            <Field
-              name={`${r}.numeralValue`}
-              label="Numeral Value"
-              component={MUITextField}
-              type="text"
-            />
-            <Field
-              name={`${r}.numeralType`}
-              label="Numeral Type"
-              component={MUISelectField}
-              options={[
-                { name: 'Number', value: 0 },
-                { name: 'Currency', value: 1 },
-                { name: 'Percentage', value: 2 },
-              ]}
-            />
-            <Field
-              name={`${r}.prefix`}
-              label="Prefix"
-              component={MUITextField}
-              type="text"
-            />
-            <Field
-              name={`${r}.suffix`}
-              label="Suffix"
-              component={MUITextField}
-              type="text"
-            />
-            <Field
-              name={`${r}.numeralLeft`}
-              label="Is Left"
-              component={MUISwitchField}
-            />
-            <Field
-              name={`${r}.decimalPoint`}
-              label="Decimal Point"
-              component={MUISwitchField}
-            />
-            <br />
-            <Button color="secondary" onClick={() => remove(index)}>
+          <Box display="flex" flexDirection="column" key={r}>
+            <Box display="flex" my={1}>
+              <Field
+                name={`${r}.tag`}
+                label="Tag"
+                component={AsyncAutocompleteField}
+                type="text"
+                url="/tharavu/tags?name_cont"
+              />
+            </Box>
+            <Box display="flex" my={1}>
+              <Field
+                name={`${r}.numeralStr`}
+                label="Numeral String"
+                component={MUITextField}
+                type="text"
+              />
+            </Box>
+            <Box display="flex" my={1}>
+              <Field
+                name={`${r}.numeralValue`}
+                label="Numeral Value"
+                component={MUITextField}
+                type="text"
+              />
+            </Box>
+            <Box display="flex" my={1}>
+              <Field
+                name={`${r}.numeralType`}
+                label="Numeral Type"
+                component={MUISelectField}
+                options={[
+                  { name: 'Number', value: 'number' },
+                  { name: 'Currency', value: 'currency' },
+                  { name: 'Percentage', value: 'percentage' },
+                ]}
+              />
+            </Box>
+            <Box display="flex" my={1}>
+              <Field
+                name={`${r}.numeralLeft`}
+                label="Is Left"
+                component={MUISwitchField}
+              />
+            </Box>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => remove(index)}
+            >
               Remove
             </Button>
-          </div>
+          </Box>
         ))}
-        <Button
-          color="default"
-          variant="outlined"
-          onClick={() => {
-            push({ numeralType: 0, numeralLeft: true, decimalPoint: false });
-          }}
-        >
-          Add Numeral
-        </Button>
-      </div>
+        <Box my={2}>
+          <Button
+            color="default"
+            variant="outlined"
+            onClick={() => {
+              push({
+                numeralType: 'number',
+                numeralLeft: true,
+                decimalPoint: false,
+              });
+            }}
+          >
+            Add Numeral
+          </Button>
+        </Box>
+      </Box>
     );
   };
 

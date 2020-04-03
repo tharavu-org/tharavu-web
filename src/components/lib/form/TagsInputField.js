@@ -28,7 +28,7 @@ export default function TagsInputField(props) {
         `/tharavu/tags?name_cont=${inputValue}&page=1&per=5`,
       );
       const tags = await response.json();
-      setOptions(tags.data.tharavuTags);
+      setOptions(tags.data);
     }
     fetchData();
   }, [inputValue]);
@@ -45,18 +45,18 @@ export default function TagsInputField(props) {
       className={classes.autoComplete}
       multiple
       options={options}
-      getOptionLabel={option => option.name}
+      getOptionLabel={(option) => option.name}
       onChange={(e, newValue) => onChange(newValue)}
       value={value}
       getOptionSelected={() => false}
-      renderInput={params => (
+      renderInput={(params) => (
         <TextField
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...params}
           variant="outlined"
           label={label}
           fullWidth
-          onChange={e => setInputValue(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)}
         />
       )}
       renderTags={renderTags}

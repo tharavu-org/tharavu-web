@@ -16,6 +16,7 @@ export default function New() {
   const initialValues = {
     createdById: currentUser.id,
     tags: [],
+    numerals: [],
     locationTags: [],
     relationTags: [],
     startDate: dateTime,
@@ -35,20 +36,9 @@ export default function New() {
   const onSubmit = (values) => {
     const payload = produce(values, (draftState) => {
       draftState.tharavuEventTagsAttributes = getTagsWithPosition(values.tags);
-      if (values.numerals) {
-        values.numerals.forEach((item) => {
-          const tagIndex = draftState.tharavuEventTagsAttributes.findIndex(
-            (element) =>
-              element.name.toLowerCase() === item.tagName.toLowerCase(),
-          );
-          if (tagIndex !== -1) {
-            draftState.tharavuEventTagsAttributes[tagIndex] = {
-              ...draftState.tharavuEventTagsAttributes[tagIndex],
-              ...item,
-            };
-          }
-        });
-      }
+      draftState.tharavuEventTagNumeralsAttributes = values.numerals.map(
+        (item) => ({ ...item, tharavuTagId: item.tag.id }),
+      );
       draftState.tharavuEventLocationTagsAttributes = getTagsWithPosition(
         values.locationTags,
       );

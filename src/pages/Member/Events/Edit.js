@@ -10,7 +10,7 @@ import Form from './Form';
 export default function Edit({ event }) {
   const dispatch = useDispatch();
 
-  const tryParseISO = obj => {
+  const tryParseISO = (obj) => {
     if (typeof obj === 'string') {
       return parseISO(obj);
     }
@@ -20,7 +20,7 @@ export default function Edit({ event }) {
 
   const getTagsAttributes = (newTags, eventTags) => {
     let removedItems = without(newTags, eventTags);
-    removedItems = removedItems.map(i => {
+    removedItems = removedItems.map((i) => {
       const obj = { _destroy: true };
       return { ...obj, ...i };
     });
@@ -38,30 +38,40 @@ export default function Edit({ event }) {
     return [...objects, ...removedItems];
   };
 
-  const onSubmit = values => {
+  const getNumerals = (newNumerals, eventNumerals) => {
+    let removedItems = without(newNumerals, eventNumerals);
+    removedItems = removedItems.map((i) => {
+      const obj = { _destroy: true };
+      return { ...obj, ...i };
+    });
+    return [...newNumerals, ...removedItems];
+  };
+
+  const onSubmit = (values) => {
+    const payload = produce(values, (draftState) => {
+      draftState.tharavuEventTagsAttributes = getTagsAttributes(
+        values.tags,
+        event.tags,
+      );
+      draftState.tharavuEventTagNumeralsAttributes = getNumerals(
+        values.numerals,
+        event.numerals,
+      );
+      draftState.tharavuEventTagNumeralsAttributes = draftState.tharavuEventTagNumeralsAttributes.map(
+        (item) => ({ ...item, tharavuTagId: item.tag.id }),
+      );
+      draftState.tharavuEventLocationTagsAttributes = getTagsAttributes(
+        values.locationTags,
+        event.locationTags,
+      );
+      draftState.startDate = format(tryParseISO(values.startDate), 'yyyy-MM-d');
+      draftState.endDate = format(tryParseISO(values.endDate), 'yyyy-MM-d');
+      draftState.startsAt = format(tryParseISO(values.startsAt), 'hh:mm:ss');
+      draftState.endsAt = format(tryParseISO(values.endsAt), 'hh:mm:ss');
+    });
     dispatch({
       type: 'UPDATE_EVENT',
-      payload: produce(values, draftState => {
-        draftState.tharavuEventTagsAttributes = getTagsAttributes(
-          values.tags,
-          event.tags,
-        );
-        draftState.tharavuEventLocationTagsAttributes = getTagsAttributes(
-          values.locationTags,
-          event.locationTags,
-        );
-        draftState.tharavuEventRelationTagsAttributes = getTagsAttributes(
-          values.relationTags,
-          event.relationTags,
-        );
-        draftState.startDate = format(
-          tryParseISO(values.startDate),
-          'yyyy-MM-d',
-        );
-        draftState.endDate = format(tryParseISO(values.endDate), 'yyyy-MM-d');
-        draftState.startsAt = format(tryParseISO(values.startsAt), 'hh:mm:ss');
-        draftState.endsAt = format(tryParseISO(values.endsAt), 'hh:mm:ss');
-      }),
+      payload,
     });
   };
 
