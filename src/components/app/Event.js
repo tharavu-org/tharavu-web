@@ -21,19 +21,40 @@ export default function Event({ event }) {
   const classes = useStyles();
 
   const renderTags = () => {
-    return event.tags.map((t, i) => (
-      <Chip
-        key={i.toString()}
-        label={t.name}
-        className={classes.chip}
-        color="primary"
-        component={React.forwardRef((props, ref) => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          <Link ref={ref} {...props} to={`/explore?tags=${t.name}`} />
-        ))}
-        clickable
-      />
-    ));
+    return event.tags.map((t, i) => {
+      const numeral = event.numerals.find(
+        (item) => item.tharavuTagId === t.tharavuTagId,
+      );
+
+      return (
+        <Box key={i.toString()} display="inline-flex">
+          {numeral && numeral.numeralLeft && (
+            <Chip
+              label={numeral.numeralStr}
+              className={classes.chip}
+              color="primary"
+            />
+          )}
+          <Chip
+            label={t.name}
+            className={classes.chip}
+            color="primary"
+            component={React.forwardRef((props, ref) => (
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              <Link ref={ref} {...props} to={`/explore?tags=${t.name}`} />
+            ))}
+            clickable
+          />
+          {numeral && !numeral.numeralLeft && (
+            <Chip
+              label={numeral.numeralStr}
+              className={classes.chip}
+              color="primary"
+            />
+          )}
+        </Box>
+      );
+    });
   };
 
   const renderLocationTags = () => {

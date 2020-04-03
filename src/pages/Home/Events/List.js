@@ -5,7 +5,7 @@ import AppPagination from '../../../components/lib/AppPagination';
 
 export default function List() {
   const dispatch = useDispatch();
-  const rows = useSelector(state => state.event.events);
+  const rows = useSelector((state) => state.event.events);
 
   useEffect(() => {
     dispatch({ type: 'GET_EVENTS', payload: { page: 1 } });
