@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AppPagination({ actionType }) {
+export default function AppPagination({ actionType, query }) {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const { pagination, payload } = useSelector((state) => state.pagination);
@@ -18,7 +18,10 @@ export default function AppPagination({ actionType }) {
 
   const handlePaginationChange = (e, newPage) => {
     setPage(newPage);
-    dispatch({ type: actionType, page: newPage, payload });
+    dispatch({
+      type: actionType,
+      payload: { page: newPage, query, data: payload },
+    });
   };
 
   return (
