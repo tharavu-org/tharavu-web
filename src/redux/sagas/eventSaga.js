@@ -3,11 +3,6 @@ import queryString from 'query-string';
 
 import { postAPISaga, getAPISaga } from './requestSaga';
 
-function* getEventsWithPagination() {
-  const pagination = yield select((state) => state.pagination.pagination);
-  yield put({ type: 'GET_EVENTS', payload: { page: pagination.currentPage } });
-}
-
 function* create(params) {
   yield call(postAPISaga, '/tharavu/events', params.payload);
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
@@ -15,8 +10,7 @@ function* create(params) {
     type: 'SHOW_TOAST',
     payload: { variant: 'success', msg: 'Event created successfully' },
   });
-
-  yield call(getEventsWithPagination);
+  yield put({ type: 'GET_EVENTS' });
 }
 
 function* filterEvents({ payload }) {
@@ -42,7 +36,7 @@ function* update(params) {
     type: 'SHOW_TOAST',
     payload: { variant: 'success', msg: 'Event updated' },
   });
-  yield call(getEventsWithPagination);
+  yield put({ type: 'GET_EVENTS' });
 }
 
 function* deleteEvent(params) {
@@ -51,14 +45,18 @@ function* deleteEvent(params) {
     type: 'SHOW_TOAST',
     payload: { variant: 'warning', msg: 'Event deleted!' },
   });
-  yield call(getEventsWithPagination);
+  yield put({ type: 'GET_EVENTS' });
 }
 
 function* getEvents({ payload }) {
-  const { page, query } = payload;
+  const pagination = yield select((state) => state.pagination.pagination);
+  const currentPage = (payload && payload.page) || pagination.currentPage;
+  const currentQuery = (payload && payload.query) || pagination.query;
   const result = yield call(
     getAPISaga,
-    `/tharavu/events?page=${page}&${queryString.stringify(query)}`,
+    `/tharavu/events?page=${currentPage}&${queryString.stringify(
+      currentQuery,
+    )}`,
   );
   yield put({ type: 'SET_EVENTS', payload: result.data });
   yield put({ type: 'SET_PAGINATION', payload: result.pagination });

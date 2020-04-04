@@ -46,7 +46,7 @@ function* handleBadRequest(currentUser, response) {
 
 export function* postAPISaga(url, data, patch = false) {
   try {
-    const { currentUser } = yield select(state => state.session);
+    const { currentUser } = yield select((state) => state.session);
     const response = yield call(postAPI, currentUser, url, data, patch);
     if (!response.ok) {
       yield handleBadRequest(currentUser, response);
@@ -67,7 +67,7 @@ export function* postAPISaga(url, data, patch = false) {
 
 export function* getAPISaga(url, del = false) {
   try {
-    const { currentUser } = yield select(state => state.session);
+    const { currentUser } = yield select((state) => state.session);
     const response = yield call(getAPI, currentUser, url, del);
     if (!response.ok) {
       yield handleBadRequest(currentUser, response);
