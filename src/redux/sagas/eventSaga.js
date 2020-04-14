@@ -3,8 +3,8 @@ import queryString from 'query-string';
 
 import { postAPISaga, getAPISaga } from './requestSaga';
 
-function* create(params) {
-  yield call(postAPISaga, '/tharavu/events', params.payload);
+function* create({ payload }) {
+  yield call(postAPISaga, '/tharavu/events', payload);
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
   yield put({
     type: 'SHOW_TOAST',
@@ -14,23 +14,18 @@ function* create(params) {
 }
 
 function* filterEvents({ payload }) {
-  const result = yield call(
+  const response = yield call(
     postAPISaga,
     `/tharavu/filter-events?page=${payload.page}`,
     payload.data,
   );
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
-  yield put({ type: 'SET_EVENTS', payload: result.data });
-  yield put({ type: 'SET_PAGINATION', payload: result.pagination });
+  yield put({ type: 'SET_EVENTS', payload: response.data });
+  yield put({ type: 'SET_PAGINATION', payload: response.pagination });
 }
 
-function* update(params) {
-  yield call(
-    postAPISaga,
-    `/tharavu/events/${params.payload.id}`,
-    params.payload,
-    true,
-  );
+function* update({ payload }) {
+  yield call(postAPISaga, `/tharavu/events/${payload.id}`, payload, true);
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
   yield put({
     type: 'SHOW_TOAST',
@@ -39,8 +34,8 @@ function* update(params) {
   yield put({ type: 'GET_EVENTS' });
 }
 
-function* deleteEvent(params) {
-  yield call(getAPISaga, `/tharavu/events/${params.payload}`, true);
+function* deleteEvent({ payload }) {
+  yield call(getAPISaga, `/tharavu/events/${payload}`, true);
   yield put({
     type: 'SHOW_TOAST',
     payload: { variant: 'warning', msg: 'Event deleted!' },
@@ -52,14 +47,14 @@ function* getEvents({ payload }) {
   const pagination = yield select((state) => state.pagination.pagination);
   const currentPage = (payload && payload.page) || pagination.currentPage;
   const currentQuery = (payload && payload.query) || pagination.query;
-  const result = yield call(
+  const response = yield call(
     getAPISaga,
     `/tharavu/events?page=${currentPage}&${queryString.stringify(
       currentQuery,
     )}`,
   );
-  yield put({ type: 'SET_EVENTS', payload: result.data });
-  yield put({ type: 'SET_PAGINATION', payload: result.pagination });
+  yield put({ type: 'SET_EVENTS', payload: response.data });
+  yield put({ type: 'SET_PAGINATION', payload: response.pagination });
 }
 
 function* resetEvents() {
