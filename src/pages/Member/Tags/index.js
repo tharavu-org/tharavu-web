@@ -8,7 +8,7 @@ import List from './List';
 
 export default function Tags() {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const currentFormSuccess = useSelector(state => state.currentForm.success);
+  const currentFormSuccess = useSelector((state) => state.currentForm.success);
 
   useEffect(() => {
     if (currentFormSuccess) {
@@ -24,12 +24,12 @@ export default function Tags() {
         color="primary"
         onClick={() => setDialogOpen(true)}
       >
-        Create
+        New Tag
       </Button>
       <List />
       <AppDialog
         open={dialogOpen}
-        title="Create Tag"
+        title="New Tag"
         onClose={() => setDialogOpen(false)}
       >
         <New />
