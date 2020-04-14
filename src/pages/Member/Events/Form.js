@@ -14,7 +14,7 @@ import MUITextField from '../../../components/lib/form/MUITextField';
 import MUISwitchField from '../../../components/lib/form/MUISwitchField';
 import MUISelectField from '../../../components/lib/form/MUISelectField';
 
-export default function Form({ onSubmit, initialValues }) {
+export default function Form({ onSubmit, initialValues, edit }) {
   const renderNumeralsField = (rows, push, remove) => {
     return (
       <Box display="flex" flexDirection="column" flexGrow="1">
@@ -133,7 +133,7 @@ export default function Form({ onSubmit, initialValues }) {
         </Box>
         <Box display="flex" flexDirection="row-reverse" m={2}>
           <Button type="submit" variant="contained" color="primary">
-            Submit
+            {edit ? 'Update' : 'Create'}
           </Button>
         </Box>
       </Box>

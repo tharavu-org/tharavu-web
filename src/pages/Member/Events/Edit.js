@@ -64,8 +64,11 @@ export default function Edit({ event }) {
         values.locationTags,
         event.locationTags,
       );
-      draftState.startDate = format(tryParseISO(values.startDate), 'yyyy-MM-d');
-      draftState.endDate = format(tryParseISO(values.endDate), 'yyyy-MM-d');
+      draftState.startDate = format(
+        tryParseISO(values.startDate),
+        'yyyy-MM-dd',
+      );
+      draftState.endDate = format(tryParseISO(values.endDate), 'yyyy-MM-dd');
       draftState.startsAt = format(tryParseISO(values.startsAt), 'hh:mm:ss');
       draftState.endsAt = format(tryParseISO(values.endsAt), 'hh:mm:ss');
     });
@@ -77,7 +80,7 @@ export default function Edit({ event }) {
 
   return (
     <AppForm>
-      <Form onSubmit={onSubmit} initialValues={event} />
+      <Form onSubmit={onSubmit} initialValues={event} edit />
     </AppForm>
   );
 }
