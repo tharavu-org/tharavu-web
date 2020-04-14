@@ -7,8 +7,8 @@ function* getTagsWithPagination() {
   yield put({ type: 'GET_TAGS', payload: { page: pagination.currentPage } });
 }
 
-function* create(params) {
-  yield call(postAPISaga, '/tharavu/tags', params.payload);
+function* create({ payload }) {
+  yield call(postAPISaga, '/tharavu/tags', payload);
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
   yield put({
     type: 'SHOW_TOAST',
@@ -18,13 +18,8 @@ function* create(params) {
   yield call(getTagsWithPagination);
 }
 
-function* update(params) {
-  yield call(
-    postAPISaga,
-    `/tharavu/tags/${params.payload.id}`,
-    params.payload,
-    true,
-  );
+function* update({ payload }) {
+  yield call(postAPISaga, `/tharavu/tags/${payload.id}`, payload, true);
   yield put({ type: 'SET_CURRENT_FORM_SUCCESS' });
   yield put({
     type: 'SHOW_TOAST',
@@ -33,8 +28,8 @@ function* update(params) {
   yield call(getTagsWithPagination);
 }
 
-function* deleteTag(params) {
-  yield call(getAPISaga, `/tharavu/tags/${params.payload}`, true);
+function* deleteTag({ payload }) {
+  yield call(getAPISaga, `/tharavu/tags/${payload}`, true);
   yield call(getTagsWithPagination);
   yield put({
     type: 'SHOW_TOAST',
@@ -42,10 +37,10 @@ function* deleteTag(params) {
   });
 }
 
-function* getTags({ page }) {
-  const result = yield call(getAPISaga, `/tharavu/tags?page=${page}`);
-  yield put({ type: 'SET_TAGS', payload: result.data });
-  yield put({ type: 'SET_PAGINATION', payload: result.pagination });
+function* getTags({ payload }) {
+  const response = yield call(getAPISaga, `/tharavu/tags?page=${payload.page}`);
+  yield put({ type: 'SET_TAGS', payload: response.data });
+  yield put({ type: 'SET_PAGINATION', payload: response.pagination });
 }
 
 export default function* tagSaga() {

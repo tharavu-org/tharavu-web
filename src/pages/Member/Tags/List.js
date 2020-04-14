@@ -15,7 +15,7 @@ import AppDialog from '../../../components/lib/AppDialog';
 import Edit from './Edit';
 import AppPagination from '../../../components/lib/AppPagination';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(3),
   },
@@ -27,10 +27,10 @@ const useStyles = makeStyles(theme => ({
 export default function List() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const rows = useSelector(state => state.tag.tags);
+  const rows = useSelector((state) => state.tag.tags);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [tag, setTag] = useState(null);
-  const currentFormSuccess = useSelector(state => state.currentForm.success);
+  const currentFormSuccess = useSelector((state) => state.currentForm.success);
 
   useEffect(() => {
     if (currentFormSuccess) {
@@ -42,12 +42,12 @@ export default function List() {
     dispatch({ type: 'GET_TAGS', payload: { page: 1 } });
   }, [dispatch]);
 
-  const handleEdit = obj => {
+  const handleEdit = (obj) => {
     setTag(obj);
     setDialogOpen(true);
   };
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     // eslint-disable-next-line no-alert
     if (window.confirm('Delete?')) {
       dispatch({ type: 'DELETE_TAG', payload: id });
@@ -65,7 +65,7 @@ export default function List() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => (
+            {rows.map((row) => (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
                   <Chip label={row.name} />
