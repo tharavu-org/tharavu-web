@@ -24,12 +24,12 @@ export default function Events() {
         color="primary"
         onClick={() => setDialogOpen(true)}
       >
-        Create
+        New Event
       </Button>
       <List />
       <AppDialog
         open={dialogOpen}
-        title="Create Event"
+        title="New Event"
         onClose={() => setDialogOpen(false)}
       >
         <New />
