@@ -16,6 +16,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Tharavu',
       template: 'src/index.html',
+      favicon: './public/favicon.ico',
     }),
   ],
   module: {
