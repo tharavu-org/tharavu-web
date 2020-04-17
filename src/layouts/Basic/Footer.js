@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { format } from 'date-fns';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: '#20232a',
     color: 'white',
@@ -59,7 +59,7 @@ export default function Footer() {
             <a className={classes.noticeLink} href="/legal/privacy-policy">
               Privacy Policy
             </a>
-            <span>, and our&nbsp;</span>
+            <span>&nbsp;and&nbsp;</span>
             <a className={classes.noticeLink} href="/legal/terms-of-service">
               Terms of Service.
             </a>
