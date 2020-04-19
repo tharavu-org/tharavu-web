@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { format } from 'date-fns';
@@ -75,15 +74,15 @@ export default function Footer() {
           </Typography>
         </div>
       )}
-      <Link className={classes.link} to="/legal/privacy-policy">
+      <a className={classes.link} href="/legal/privacy-policy">
         Privacy Policy
-      </Link>
-      <Link className={classes.link} to="/legal/terms-of-service">
+      </a>
+      <a className={classes.link} href="/legal/terms-of-service">
         Terms of Service
-      </Link>
-      <Link className={classes.link} to="/contact-us">
+      </a>
+      <a className={classes.link} href="/contact-us">
         Contact Us
-      </Link>
+      </a>
     </footer>
   );
 }
