@@ -4,7 +4,7 @@
             "buildDir": "build",
             "bucket": "tharavu.org",
             "cacheFilePatterns": [
-                "**/static/**"
+                "**/public/**"
             ],
             "noCacheFilePatterns": [
                 "**/index.html",
