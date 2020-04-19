@@ -54,7 +54,7 @@
     "@material-ui/pickers": "^4.0.0-alpha.4",
     "@mdi/js": "^5.0.45",
     "@mdi/react": "^1.2.1",
-    "@open-tech-world/react-form": "^0.7.0",
+    "@open-tech-world/react-form": "^0.8.0",
     "date-fns": "^2.9.0",
     "fingerprintjs2": "^2.1.0",
     "immer": "^6.0.1",
