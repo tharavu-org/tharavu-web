@@ -11,8 +11,6 @@ const useStyles = makeStyles({
   },
   content: {
     marginTop: '50px',
-    height: `calc(100% - 50px)`,
-    minHeight: `calc(100% - 50px)`,
   },
 });
 
