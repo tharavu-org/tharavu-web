@@ -62,6 +62,25 @@ function* resetEvents() {
   yield put({ type: 'SET_PAGINATION', payload: {} });
 }
 
+function* getEventCategoriesCount({ payload }) {
+  const response = yield call(
+    getAPISaga,
+    `/tharavu/event-categories-count?start_date=${payload}`,
+  );
+  yield put({ type: 'SET_EVENT_CATEGORIES_COUNT', payload: response.data });
+}
+
+function* getTodayEvents({ payload }) {
+  const response = yield call(
+    getAPISaga,
+    `/tharavu/today-events?page=${payload.page}&${queryString.stringify(
+      payload.query,
+    )}`,
+  );
+  yield put({ type: 'SET_TODAY_EVENTS', payload: response.data });
+  yield put({ type: 'SET_PAGINATION', payload: response.pagination });
+}
+
 export default function* eventSaga() {
   yield takeLatest('CREATE_EVENT', create);
   yield takeLatest('GET_EVENTS', getEvents);
@@ -69,4 +88,6 @@ export default function* eventSaga() {
   yield takeLatest('DELETE_EVENT', deleteEvent);
   yield takeLatest('RESET_EVENTS', resetEvents);
   yield takeLatest('FILTER_EVENTS', filterEvents);
+  yield takeLatest('GET_EVENT_CATEGORIES_COUNT', getEventCategoriesCount);
+  yield takeLatest('GET_TODAY_EVENTS', getTodayEvents);
 }

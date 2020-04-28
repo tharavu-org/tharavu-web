@@ -12,12 +12,14 @@ import TermsOfService from '../pages/legal/TermsOfService';
 import MemberRoute from './MemberRoute';
 import Explore from '../pages/Explore';
 import ExploreRoute from './ExploreRoute';
+import TodayEvents from '../pages/Home/Categories/TodayEvents';
 
 export default function Routes() {
   return (
     <Router>
       <Switch>
         <AppRoute exact path="/" component={Home} />
+        <AppRoute exact path="/today-events" component={TodayEvents} />
         <ExploreRoute exact path="/explore" component={Explore} />
         <AppRoute exact path="/contact-us" component={ContactUs} />
         <LegalRoute

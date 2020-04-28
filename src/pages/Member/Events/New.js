@@ -23,6 +23,7 @@ export default function New() {
     endDate: dateTime,
     startsAt: dateTime,
     endsAt: dateTime,
+    category: 'Others',
   };
 
   const getTagsWithPosition = (tags) => {

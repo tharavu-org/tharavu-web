@@ -91,6 +91,7 @@ export default function List() {
           <TableHead>
             <TableRow>
               <TableCell>Tags</TableCell>
+              <TableCell>Category</TableCell>
               <TableCell>Date</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
@@ -100,6 +101,9 @@ export default function List() {
               <TableRow key={e.id}>
                 <TableCell component="th" scope="row">
                   {renderTags(e.tags)}
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {e.category}
                 </TableCell>
                 <TableCell component="th" scope="row">
                   {e.startDate}

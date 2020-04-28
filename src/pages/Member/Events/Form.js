@@ -15,6 +15,17 @@ import MUISwitchField from '../../../components/lib/form/MUISwitchField';
 import MUISelectField from '../../../components/lib/form/MUISelectField';
 
 export default function Form({ onSubmit, initialValues, edit }) {
+  const categoryOptions = [
+    { name: 'Business', value: 'Business' },
+    { name: 'Entertainment', value: 'Entertainment' },
+    { name: 'Environment', value: 'Environment' },
+    { name: 'Health', value: 'Health' },
+    { name: 'Science', value: 'Science' },
+    { name: 'Sports', value: 'Sports' },
+    { name: 'Technology', value: 'Technology' },
+    { name: 'Others', value: 'Others' },
+  ];
+
   const renderNumeralsField = (rows, push, remove) => {
     return (
       <Box display="flex" flexDirection="column" flexGrow="1">
@@ -117,6 +128,14 @@ export default function Form({ onSubmit, initialValues, edit }) {
             name="relationTags"
             label="Relation Tags"
             component={TagsInputField}
+          />
+        </Box>
+        <Box display="flex" m={2}>
+          <Field
+            name="category"
+            label="Category"
+            component={MUISelectField}
+            options={categoryOptions}
           />
         </Box>
         <Box display="flex" m={2}>

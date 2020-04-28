@@ -1,13 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Events from './Events';
+import Categories from './Categories';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'grid',
-    gridTemplateColumns: '50% 50%',
+    gridTemplateColumns: `calc(50% - ${theme.spacing(
+      1,
+    )}px) calc(50% - ${theme.spacing(1)}px)`,
+    gridColumnGap: theme.spacing(2),
     padding: theme.spacing(3),
-    height: `calc(100% - ${theme.spacing(6)}px)`,
+    minHeight: `calc(100vh - 50px)`,
   },
 }));
 
@@ -17,7 +21,7 @@ export default function Home() {
   return (
     <div className={classes.container}>
       <Events />
-      <div />
+      <Categories />
     </div>
   );
 }
