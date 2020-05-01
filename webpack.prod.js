@@ -6,7 +6,7 @@ const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const paths = [
   {
     path: '/',
-    lastmod: '2020-04-17',
+    lastmod: '2020-04-28',
   },
   {
     path: '/explore',
@@ -23,6 +23,38 @@ const paths = [
   {
     path: '/contact-us',
     lastmod: '2020-02-23',
+  },
+  {
+    path: '/today-events?category=Business',
+    lastmod: '2020-04-28',
+  },
+  {
+    path: '/today-events?category=Entertainment',
+    lastmod: '2020-04-28',
+  },
+  {
+    path: '/today-events?category=Environment',
+    lastmod: '2020-04-28',
+  },
+  {
+    path: '/today-events?category=Health',
+    lastmod: '2020-04-28',
+  },
+  {
+    path: '/today-events?category=Science',
+    lastmod: '2020-04-28',
+  },
+  {
+    path: '/today-events?category=Sports',
+    lastmod: '2020-04-28',
+  },
+  {
+    path: '/today-events?category=Technology',
+    lastmod: '2020-04-28',
+  },
+  {
+    path: '/today-events?category=Others',
+    lastmod: '2020-04-28',
   },
 ];
 
