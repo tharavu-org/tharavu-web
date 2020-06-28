@@ -2,6 +2,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const Dotenv = require('dotenv-webpack');
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
+const CopyPlugin = require('copy-webpack-plugin');
 
 const paths = [
   {
@@ -66,5 +67,10 @@ module.exports = merge(common, {
       safe: true, // load .env.example (defaults to "false" which does not use dotenv-safe)
     }),
     new SitemapPlugin('https://tharavu.org', paths),
+    new CopyPlugin({
+      patterns: [
+        { from: 'netlify.toml', to: 'netlify.toml' },
+      ],
+    }),
   ],
 });
