@@ -1,18 +1,21 @@
 import React from 'react';
 import { DesktopTimePicker } from '@material-ui/pickers';
+import { TextField } from '@material-ui/core';
 
-export default function MUIDateField(props) {
+export default function MUITimeField(props) {
   const { label, onChange, value } = props;
   return (
     <DesktopTimePicker
       ampm={false}
       autoOk
-      variant="outlined"
       label={label}
       views={['hours', 'minutes', 'seconds']}
       value={value}
       onChange={onChange}
-      fullWidth
+      renderInput={(inputProps) => (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <TextField {...inputProps} variant="outlined" fullWidth />
+      )}
     />
   );
 }

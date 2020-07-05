@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { DesktopDatePicker } from '@material-ui/pickers';
 import { useField } from '@open-tech-world/react-form';
+import { TextField } from '@material-ui/core';
 
 export default function MUIDateField({ label, onChange, value, startDate }) {
   const { state, setFieldValue } = useField();
@@ -14,12 +15,14 @@ export default function MUIDateField({ label, onChange, value, startDate }) {
   return (
     <DesktopDatePicker
       autoOk
-      variant="outlined"
       label={label}
       disableMaskedInput
       value={value}
       onChange={onChange}
-      fullWidth
+      renderInput={(props) => (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <TextField {...props} variant="outlined" fullWidth />
+      )}
     />
   );
 }
