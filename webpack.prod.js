@@ -3,6 +3,7 @@ const common = require('./webpack.common.js');
 const Dotenv = require('dotenv-webpack');
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const CopyPlugin = require('copy-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const paths = [
   {
@@ -71,6 +72,13 @@ module.exports = merge(common, {
       patterns: [
         { from: 'netlify.toml', to: 'netlify.toml' },
       ],
+    }),
+    new CompressionPlugin({
+      filename: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
 });
