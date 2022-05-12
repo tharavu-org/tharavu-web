@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
   },
   content: {
-    marginTop: '50px',
+    marginTop: '100px',
   },
 });
 

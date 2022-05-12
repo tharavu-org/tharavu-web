@@ -9,9 +9,9 @@ const useStyles = makeStyles({
     flexDirection: 'column',
   },
   content: {
-    marginTop: '50px',
-    height: `calc(100% - 50px)`,
-    minHeight: `calc(100% - 50px)`,
+    marginTop: '150px',
+    height: `calc(100% - 150px)`,
+    minHeight: `calc(100% - 150px)`,
     overflow: 'hidden',
   },
 });

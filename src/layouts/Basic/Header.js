@@ -10,6 +10,7 @@ import Toast from '../../components/lib/Toast';
 
 const useStyles = makeStyles(() => ({
   appBar: {
+    top: '75px',
     height: '50px',
     backgroundColor: 'white',
   },
@@ -23,7 +24,7 @@ const useStyles = makeStyles(() => ({
 
 export default function Header() {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const currentUser = useSelector(state => state.session.currentUser);
+  const currentUser = useSelector((state) => state.session.currentUser);
   const classes = useStyles();
 
   const renderActions = () => {
@@ -46,25 +47,38 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="fixed" color="default" className={classes.appBar}>
-      <Toolbar variant="dense" className={classes.toolBar}>
-        <Button href="/">
-          <Typography className={classes.title} variant="h6">
-            தரவு
-          </Typography>
-        </Button>
-        <div>{renderActions()}</div>
-      </Toolbar>
-      {!currentUser && (
-        <AppDialog
-          open={dialogOpen}
-          title="Sign in"
-          onClose={() => setDialogOpen(false)}
-        >
-          <SignIn />
-        </AppDialog>
-      )}
-      <Toast />
-    </AppBar>
+    <>
+      <div
+        style={{
+          position: 'fixed',
+          background: 'black',
+          color: 'red',
+          width: '100%',
+          textAlign: 'center',
+        }}
+      >
+        <h1>API migration is in progress, please check back later.</h1>
+      </div>
+      <AppBar position="fixed" color="default" className={classes.appBar}>
+        <Toolbar variant="dense" className={classes.toolBar}>
+          <Button href="/">
+            <Typography className={classes.title} variant="h6">
+              தரவு
+            </Typography>
+          </Button>
+          <div>{renderActions()}</div>
+        </Toolbar>
+        {!currentUser && (
+          <AppDialog
+            open={dialogOpen}
+            title="Sign in"
+            onClose={() => setDialogOpen(false)}
+          >
+            <SignIn />
+          </AppDialog>
+        )}
+        <Toast />
+      </AppBar>
+    </>
   );
 }
